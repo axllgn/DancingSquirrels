@@ -8,6 +8,8 @@ class PodcastList extends React.Component {
     super(props);
     let hrefArr = window.location.href.split('/');
     this.username = hrefArr[hrefArr.length - 1];
+
+    console.log("LIST PROPS", props)
   }
 
   onFavorite(podcast) {

@@ -1,9 +1,10 @@
 /* Layout */
 
 body {
-  max-width: 1200px;
-  margin: 80px auto auto auto;
+  /*max-width: 1200px;*/
+  /*margin: 80px auto auto auto;*/
   position: relative;
+  width: 100%;
 }
 
 .podcast-results {
@@ -16,7 +17,7 @@ body {
 }
 
 
-/* Header */
+/* Header 
 
 header {
   z-index: 10;
@@ -29,7 +30,6 @@ header {
   left: 0;
   width: 100%;
   overflow: hidden;
-  /*background-color: #fafafa;*/
   background-color: crimson;
   ;
   padding: 8px 30px;
@@ -68,7 +68,7 @@ header > input {
   color: yellow;
 }
 
-
+*/
 /* Podcast Card */
 
 .podcast-card {

@@ -13,7 +13,14 @@ import LocalLogin from './components/LocalLogin.jsx';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 /* astros */
-import { AppBar } from 'react-toolbox/lib/app_bar';
+// import { AppBar } from 'react-toolbox/lib/app_bar';
+import MUI from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
 
 class App extends React.Component {
   constructor(props) {
@@ -113,58 +120,57 @@ class App extends React.Component {
     return (
       <Router>
 
+      <div>
 
-        {/* <div> */}
-
-        <AppBar title="React Toolbox" leftIcon="menu" rightIcon={ <GithubIcon />}>
-          <Navigation type="horizontal">
-
-                { "TEST" }
+        
 
                 <Search onSearch={this.onSearch}
                         getHomePage={this.getHomePage}
                         logoutUser={this.logoutUser}
                         currentPodcastView={this.currentPodcastView}/>
+          
+        <Switch>
 
-                <Switch>
+            <Route name="root"
+                   exact path="/"
+                   component={() => (
 
-                    <Route name="root"
-                           exact path="/"
-                           component={() => (<PodcastMain onSearch={this.onSearch}
-                                                          podcasts={this.state.podcasts}
-                                                          onClickPodcast={this.onClickPodcast}
-                                                          currentPodcastView={this.state.currentPodcastView} />)} />
+                    <PodcastMain onSearch={this.onSearch}
+                                  podcasts={this.state.podcasts}
+                                  onClickPodcast={this.onClickPodcast}
+                                  currentPodcastView={this.state.currentPodcastView} /> )
+                  } 
+            />
 
-                    <Route path="/login/local" 
-                           component={LocalLogin} />
+            <Route path="/login/local" 
+                   component={LocalLogin} />
 
-                    <Route path="/login" 
-                           component={Login} />
+            <Route path="/login" 
+                   component={Login} />
 
-                    <Route path="/signup" 
-                           component={Signup} />
+            <Route path="/signup" 
+                   component={Signup} />
 
-                    <Route path="/podcasts/episodes"
-                           component={() => (<PodcastEpisodes podcastEpisodes={this.state.podcastEpisodes} /> )} />
+            <Route path="/podcasts/episodes"
+                   component={() => (
+                    <PodcastEpisodes podcastEpisodes={this.state.podcastEpisodes} /> )} />
 
-                    <Route name="user"
-                           path="/user/:username"
-                           component={() => (<UserHomePage onSearch={this.onSearch}
-                                                           podcasts={this.state.podcasts}
-                                                           onClickPodcast={this.onClickPodcast}/> )} />
+            <Route name="user"
+                   path="/user/:username"
+                   component={() => 
+                    (<UserHomePage onSearch={this.onSearch}
+                                   podcasts={this.state.podcasts}
+                                   onClickPodcast={this.onClickPodcast}/> )} />
 
-                    <Route path="/logout" component={() => (<PodcastMain onSearch={this.onSearch}
-                                                                         podcasts={this.state.podcasts}
-                                                                         onClickPodcast={this.onClickPodcast}/> )} />
+            <Route path="/logout" component={() => (
+              <PodcastMain onSearch={this.onSearch}
+                           podcasts={this.state.podcasts}
+                           onClickPodcast={this.onClickPodcast}/> )} />
 
-                </Switch>
-
-           </Navigation>
-        </AppBar>
-        
-        {/* </div> */}
+        </Switch>
 
 
+        </div>
       </Router>
     );
   }
