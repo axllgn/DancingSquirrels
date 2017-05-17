@@ -14,7 +14,8 @@
     "test": "mocha --compilers jsx:babel-core/register test",
     "db-dev": "brew info postgres",
     "start-db": "pg_ctl -D /usr/local/var/postgres start",
-    "create-db": "createdb podiocast & psql"
+    "create-db": "createdb podiocast",
+    "open-db": "psql podiocast"
   },
   "dependencies": {
     "bcrypt": "^1.0.2",

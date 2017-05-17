@@ -10,7 +10,7 @@ import Signup from './components/Signup.jsx';
 import ReactRouter from 'react-router';
 import LocalLogin from './components/LocalLogin.jsx';
 
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App extends React.Component {
   constructor(props) {
