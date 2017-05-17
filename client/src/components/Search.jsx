@@ -7,6 +7,17 @@ import MUI from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import FlatButton from 'material-ui/FlatButton';
+import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
+import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
+import MenuIcon from 'material-ui/svg-icons/navigation/menu';
+import MenuItem from 'material-ui/MenuItem';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import RaisedButton from 'material-ui/RaisedButton';
+import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
 class Search extends React.Component {
   constructor(props) {
@@ -28,31 +39,65 @@ class Search extends React.Component {
     return (
 
       <MUI>
-        <AppBar className="search" title="Title" iconClassNameRight="muidocs-icon-navigation-expand-more" >
+        {/*<AppBar className="search" 
+                title="NETPODS" 
+                iconClassNameRight="muidocs-icon-navigation-expand-more" 
+                iconElementRight={ 
 
+                  <div>
+
+                  <FlatButton label="Home">
+                    <Link to='/' onClick={() => 
+                      {  this.props.getHomePage(); this.props.currentPodcastView('Top 10 Podcasts!');}}> 
+                    </Link> 
+                  </FlatButton> 
+
+                  <FlatButton label="Login">
+                    <Link to='/login'></Link>
+                  </FlatButton> 
+
+                  <FlatButton label="Logout">
+                    <Link to='/logout' onClick={this.props.logoutUser}>
+                    </Link>
+                  </FlatButton> 
+
+                  </div>}
+
+
+        > */}
+
+        <Toolbar>
+
+          <IconButton touch={true}>
+            <MenuIcon />
+          </IconButton>
+
+
+          <ToolbarTitle text="NETPODS" />
 
       {/* <div className='search'>
         
-       <header> */}
+       <header> 
 
           <h1>NETPOD</h1>
-          <Link to='/' className='header-link' onClick={() => 
-            {  this.props.getHomePage(); 
-               this.props.currentPodcastView('Top 10 Podcasts!');}}> 
-            Home
-          </Link>
+        
+
+          
           <Link to='/login' className='header-link'>Login</Link>
-          <Link to='/logout' className='header-link' onClick={this.props.logoutUser}>Logout</Link>
+          <Link to='/logout' className='header-link' onClick={this.props.logoutUser}>Logout</Link>*/}
           <input
             type='text'
             placeholder="Search"
             onKeyPress={this.onSearch}
             ref={(input) => this._query = input }
           />
-        {/*</header>
-      </div>*/}
 
-        </AppBar>
+          </Toolbar>
+
+        {/*</header>
+      </div>
+
+        </AppBar>*/}
       </MUI>
 
     );
