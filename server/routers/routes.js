@@ -175,7 +175,6 @@ router.route('/get-reviews')
 
 router.route('/post-review')
  .post((req, res) => {
-
    UserModel.fetch(req.body.username, (result) => {
     var dataToInsert = {
       podcast_id: req.body.collectionId,
@@ -204,5 +203,11 @@ router.route('/getUser')
     }
   });
 
+router.route('/login')
+  .get((req, res) => {
+    
+  }
+
+    )
 
 module.exports = router;
