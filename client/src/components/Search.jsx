@@ -33,6 +33,7 @@ class Search extends React.Component {
     this.onSearch = this.onSearch.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.onMenuClick = this.onMenuClick.bind(this);
   }
 
   handleToggle() { this.setState({open: !this.state.open}); }
@@ -46,6 +47,11 @@ class Search extends React.Component {
       this.props.onSearch(this._query.value);
       this.props.currentPodcastView('Search Results');
     }
+  }
+
+  onMenuClick() {
+    this.props.onMenuClick();
+    this.handleClose();
   }
 
   render() {
@@ -87,6 +93,7 @@ class Search extends React.Component {
               <MenuItem onTouchTap={this.handleClose}>Government & Organizations</MenuItem>
             </Drawer>
             
+
           </IconButton>
 
           <ToolbarTitle text="NETPODS" style={{ color: 'white', letterSpacing: '2px' }} />
