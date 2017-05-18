@@ -2,6 +2,7 @@ const express = require('express');
 const UserModel = require('../../db/models/User.js');
 const UserPodcastModel = require('../../db/models/User_Podcast.js');
 const UserFavoritePodcastModel = require('../../db/models/User_Favorite_Podcast.js');
+const verifySession = require('../../db/models/VerifySession.js').verifySession;
 const ReviewModel = require('../../db/models/Review.js');
 const utils = require('../utils.js');
 const session = require('express-session');
@@ -56,35 +57,45 @@ router.route('/favorite/:id')
 
 router.route('/favorite')
   .get((req, res) => {
-    // console.log('req.body', req.query);
-    UserModel.fetch(req.query.username, (result) => {
-      // console.log('favorite: ', result);
-      UserFavoritePodcastModel.fetchFavoritePodcasts(result.id, (data) => {
-        // console.log('data', data);
-        res.send(data);
-      });
-    });
+    //console.log('testing cookie', req.query.username)
+    verifySession(req.sessionID, function(dbUserName){
+      console.log('testing cookie ids', req.query.username, dbUserName)
+      if(dbUserName === req.query.username){
+        UserModel.fetch(req.query.username, (result) => {
+          // console.log('favorite: ', result);
+          UserFavoritePodcastModel.fetchFavoritePodcasts(result.id, (data) => {
+            // console.log('data', data);
+            console.log('testing cookie data')
+            res.send(data);
+          });
+        });
+      }
+
+    })
   });
 
 router.route('/favorite')
   .post((req, res) => {
-    // console.log('req', req);
-    // console.log('req.session.passport.user', req.session.passport.user);
-    // console.log('req.body', req.body);
-    UserModel.fetch(req.body.username, (result) => {
-      let options = {
-        user_id: result.id,
-        feedUrl: req.body.feedUrl,
-        collectionId: req.body.collectionId,
-        artworkUrl100: req.body.artworkUrl100,
-        collectionName: req.body.collectionName,
-        artistName: req.body.artistName
-      };
+    verifySession(req.sessionID, function(dbUserName){
+      if(dbUserName === req.body.username){
+        UserModel.fetch(req.body.username, (result) => {
+          let options = {
+            user_id: result.id,
+            feedUrl: req.body.feedUrl,
+            collectionId: req.body.collectionId,
+            artworkUrl100: req.body.artworkUrl100,
+            collectionName: req.body.collectionName,
+            artistName: req.body.artistName
+          };
 
-      UserFavoritePodcastModel.insertOne(options, (data) => {
-        res.send(data);
-      });
-    });
+          UserFavoritePodcastModel.insertOne(options, (data) => {
+            res.send(data);
+          });
+        });
+      } else {
+        res.status(404).send()
+      }
+    })
   });
 
 router.route('/signup')
@@ -148,7 +159,7 @@ router.route('/search-rating')
 
 router.route('/addRating')
  .post((req, res) => {
-   console.log(req.body);
+   console.log(req.sessionID);
    UserModel.fetch(req.body.username, (result) => {
     var dataToInsert = {
       podcast_id: req.body.collectionId,
@@ -156,7 +167,7 @@ router.route('/addRating')
       user_id: result.id
    };
      UserPodcastModel.insertOne(dataToInsert, results => {
-       console.log(results);
+       //console.log(results);
        if (results) {
          res.status(200).send('success');
        } else {
@@ -179,7 +190,6 @@ router.route('/get-reviews')
 
 router.route('/post-review')
  .post((req, res) => {
-
    UserModel.fetch(req.body.username, (result) => {
     var dataToInsert = {
       podcast_id: req.body.collectionId,
@@ -189,7 +199,7 @@ router.route('/post-review')
        username: req.body.username
       };
      ReviewModel.insertOne(dataToInsert, results => {
-       console.log(results);
+       //console.log(results);
        if (results) {
          res.status(200).send('success');
        } else {

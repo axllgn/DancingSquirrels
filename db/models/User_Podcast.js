@@ -18,6 +18,7 @@ const insertOne = (options, cb) => {
 };
 
 const fetchPodcasts = (column, arr, cb) => {
+  console.log('fetch podcast', column, arr, cb)
     UserPodcast
     .forge()
     .where(column, 'in', arr)
