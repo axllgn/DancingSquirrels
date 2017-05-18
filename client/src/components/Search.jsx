@@ -75,6 +75,9 @@ class Search extends React.Component {
         > */}
 
         <Toolbar>
+          <IconButton touch={true}>
+            <MenuIcon 
+              onTouchTap ={this.handleToggle}/>
           <Drawer
             docked={false}
             width={200}
@@ -85,9 +88,6 @@ class Search extends React.Component {
             <MenuItem onTouchTap={this.handleClose}>Unfinished</MenuItem>
             <MenuItem onTouchTap={this.handleClose}>History</MenuItem>
           </Drawer>
-          <IconButton touch={true}>
-            <MenuIcon 
-              onTouchTap ={this.handleToggle}/>
           </IconButton>
 
 
