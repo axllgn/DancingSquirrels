@@ -26,7 +26,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPodcastView: 'Top 10 Podcasts!',
+      currentPodcastView: 'Top 10',
       podcasts: [],
       podcastEpisodes: {},
       loggedIn: false
@@ -37,6 +37,7 @@ class App extends React.Component {
     this.onSearch = this.onSearch.bind(this);
     this.onClickPodcast = this.onClickPodcast.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
+    this.onMenuClick = this.onMenuClick.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +46,18 @@ class App extends React.Component {
 
   onSearch(query) {
     $.post('/search', { search: query })
+      .done((results) => {
+        console.log(results);
+        this.setState({
+          podcasts: results
+        });
+        this.updateRatings();
+      });
+  }
+
+  onMenuClick(genreID) {
+    console.log('Menu clicked from client with ID: ', genreID);
+     $.post('/menu', { menuItem: genreID })
       .done((results) => {
         console.log(results);
         this.setState({
@@ -123,7 +136,8 @@ class App extends React.Component {
         <Search onSearch={this.onSearch}
                 getHomePage={this.getHomePage}
                 logoutUser={this.logoutUser}
-                currentPodcastView={this.currentPodcastView}/>
+                currentPodcastView={this.currentPodcastView}
+                onMenuClick={this.onMenuClick}/>
         <Switch>
           <Route name="root"
                  exact path="/"
@@ -131,7 +145,8 @@ class App extends React.Component {
                                       onSearch={this.onSearch}
                                       podcasts={this.state.podcasts}
                                       onClickPodcast={this.onClickPodcast}
-                                      currentPodcastView={this.state.currentPodcastView} />)} />
+                                      currentPodcastView={this.state.currentPodcastView}
+                                      onMenuClick={this.onMenuClick} />)} />
           <Route path="/loginLocal" 
                  component={LocalLogin} />
 
@@ -149,13 +164,15 @@ class App extends React.Component {
                  component={() => (<PodcastMain 
                                       onSearch={this.onSearch}
                                       podcasts={this.state.podcasts}
-                                      onClickPodcast={this.onClickPodcast}/> )} />
+                                      onClickPodcast={this.onClickPodcast}
+                                      onMenuClick={this.onMenuClick} /> )} />
           <Route
             path="/:username"
             component={() => (<UserHomePage
                                 onSearch={this.onSearch}
                                 podcasts={this.state.podcasts}
-                                onClickPodcast={this.onClickPodcast}/> )} />
+                                onClickPodcast={this.onClickPodcast}
+                                onMenuClick={this.onMenuClick}/> )} />
 
           </Switch>
         </div>

@@ -110,6 +110,18 @@ router.route('/search')
     });
   });
 
+  router.route('/menu')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.menuItem}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
 router.route('/podcast')
   .post((req, res) => {
     let url = req.body.feedUrl;
