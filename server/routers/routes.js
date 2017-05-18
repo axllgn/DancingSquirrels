@@ -203,11 +203,5 @@ router.route('/getUser')
     }
   });
 
-router.route('/login')
-  .get((req, res) => {
-    
-  }
-
-    )
 
 module.exports = router;

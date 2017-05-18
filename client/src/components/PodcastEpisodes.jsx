@@ -5,17 +5,35 @@ import ViewRating from './ViewRating.jsx';
 import Rating from './Rating.jsx';
 import DisplayReview from './DisplayReview.jsx';
 import WriteReview from './WriteReview.jsx';
+import ReactAudioPlayer from 'react-audio-player'
 
 class PodcastEpisodes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       rating: this.props.podcastEpisodes.rating || 0,
-      noofreviews: this.props.podcastEpisodes.noofreviews || 0
+      noofreviews: this.props.podcastEpisodes.noofreviews || 0,
+      nowPlaying: null
     };
   }
 
   componentDidMount() {
+    var reactContext = this;
+    document.addEventListener('play', function(e){
+      reactContext.setState({nowPlaying: $(e.target).attr('src')})
+      //console.log($(e.target).attr('src'))
+      console.log('presend', reactContext.state.nowPlaying)
+      var audios = document.getElementsByTagName('audio');
+        for(var i = 0, len = audios.length; i < len;i++){
+            if(audios[i] != e.target){
+              if(!audios[i].paused){
+                //********* Send play time ******
+                audios[i].pause();
+              }
+            }
+        }
+    }, true);
+
     var collectionIds = [this.props.podcastEpisodes.collectionId];
 
     $.get('/search-rating', { collectionIds })
@@ -52,9 +70,13 @@ class PodcastEpisodes extends React.Component {
           return (
             <div key={itr} className='podcast-episode'>
               <h4>{episode.title}</h4>
-              <audio controls>
-                <source src={episode.url} type="audio/mpeg" />
-              </audio>
+              <ReactAudioPlayer 
+                src={episode.url}
+                controls={true}
+                preload="none"
+                onPause={()=>{console.log(this)}}
+              />
+
             </div>
           );
         })}
