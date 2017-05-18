@@ -11,18 +11,21 @@ const sessionHelpers = require('../auth/sessionHelpers.js');
 const SessionModel = require('../../db/models/Session.js');
 const TopTenModel = require('../../db/models/TopTen.js');
 const Promise = require('bluebird');
-
+const path = require('path');
 const router = express.Router();
 
-router.route('/')
-  .get((req, res) => {
-    res.status(200).sendFile('/index.html');
-  });
+// router.route('/')
+//   .get((req, res) => {
+//     console.log(":::::::::::::::THIS SHOUDNT SHOW:::::::::::::");
+//     res.status(200).sendFile('/index.html');
+//   });
 
 router.route('/logout')
   .get((req, res) => {
+    console.log('--------------------log out----------------');
     sessionHelpers.store.destroy(req.sessionID);
     req.session.destroy();
+    res.redirect('/');
   })
 
 router.route('/topTen')
@@ -98,6 +101,18 @@ router.route('/signup')
 router.route('/search')
   .post((req, res) => {
     let url = `https://itunes.apple.com/search?term=${req.body.search}&country=US&entity=podcast&media=podcast&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/menu')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.menuItem}&limit=10`;
     utils.fetchCollections(url, (err, results) => {
       if (results) {
         res.status(200).send(results);
@@ -192,6 +207,12 @@ router.route('/getUser')
       res.send({ user: '' });
     }
   });
+
+router.route('/*')
+  .get((req, res) => {
+    console.log('*********** star route **********');
+    res.status(200).sendFile(path.join(__dirname + '/../../client/index.html'));
+  })
 
 
 module.exports = router;

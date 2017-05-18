@@ -10,7 +10,7 @@ import Signup from './components/Signup.jsx';
 import ReactRouter from 'react-router';
 import LocalLogin from './components/LocalLogin.jsx';
 
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 /* astros */
 // import { AppBar } from 'react-toolbox/lib/app_bar';
@@ -37,6 +37,7 @@ class App extends React.Component {
     this.onSearch = this.onSearch.bind(this);
     this.onClickPodcast = this.onClickPodcast.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
+    this.onMenuClick = this.onMenuClick.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +46,18 @@ class App extends React.Component {
 
   onSearch(query) {
     $.post('/search', { search: query })
+      .done((results) => {
+        console.log(results);
+        this.setState({
+          podcasts: results
+        });
+        this.updateRatings();
+      });
+  }
+
+  onMenuClick(genreID) {
+    console.log('Menu clicked from client with ID: ', genreID);
+     $.post('/menu', { menuItem: genreID })
       .done((results) => {
         console.log(results);
         this.setState({
@@ -119,62 +132,53 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-
       <div>
-
-        
-
-                <Search onSearch={this.onSearch}
-                        getHomePage={this.getHomePage}
-                        logoutUser={this.logoutUser}
-                        currentPodcastView={this.currentPodcastView}/>
-          
+        <Search onSearch={this.onSearch}
+                getHomePage={this.getHomePage}
+                logoutUser={this.logoutUser}
+                currentPodcastView={this.currentPodcastView}
+                onMenuClick={this.onMenuClick}/>
         <Switch>
+          <Route name="root"
+                 exact path="/"
+                 component={() => (<PodcastMain 
+                                      onSearch={this.onSearch}
+                                      podcasts={this.state.podcasts}
+                                      onClickPodcast={this.onClickPodcast}
+                                      currentPodcastView={this.state.currentPodcastView}
+                                      onMenuClick={this.onMenuClick} />)} />
+          <Route path="/loginLocal" 
+                 component={LocalLogin} />
 
-            <Route name="root"
-                   exact path="/"
-                   component={() => (
+          <Route path="/login" 
+                 component={Login} />
 
-                    <PodcastMain onSearch={this.onSearch}
-                                  podcasts={this.state.podcasts}
-                                  onClickPodcast={this.onClickPodcast}
-                                  currentPodcastView={this.state.currentPodcastView} /> )
-                  } 
-            />
+          <Route path="/signup" 
+                 component={Signup} />
 
-            <Route path="/login/local" 
-                   component={LocalLogin} />
+          <Route path="/episodes" 
+                 component={() => (<PodcastEpisodes 
+                                      podcastEpisodes={this.state.podcastEpisodes} /> )} />
+          
+          <Route path="/logout" 
+                 component={() => (<PodcastMain 
+                                      onSearch={this.onSearch}
+                                      podcasts={this.state.podcasts}
+                                      onClickPodcast={this.onClickPodcast}
+                                      onMenuClick={this.onMenuClick} /> )} />
+          <Route
+            path="/:username"
+            component={() => (<UserHomePage
+                                onSearch={this.onSearch}
+                                podcasts={this.state.podcasts}
+                                onClickPodcast={this.onClickPodcast}
+                                onMenuClick={this.onMenuClick}/> )} />
 
-            <Route path="/login" 
-                   component={Login} />
-
-            <Route path="/signup" 
-                   component={Signup} />
-
-            <Route path="/podcasts/episodes"
-                   component={() => (
-                    <PodcastEpisodes podcastEpisodes={this.state.podcastEpisodes} /> )} />
-
-            <Route name="user"
-                   path="/user/:username"
-                   component={() => 
-                    (<UserHomePage onSearch={this.onSearch}
-                                   podcasts={this.state.podcasts}
-                                   onClickPodcast={this.onClickPodcast}/> )} />
-
-            <Route path="/logout" component={() => (
-              <PodcastMain onSearch={this.onSearch}
-                           podcasts={this.state.podcasts}
-                           onClickPodcast={this.onClickPodcast}/> )} />
-
-        </Switch>
-
-
+          </Switch>
         </div>
       </Router>
     );
   }
 }
-
 
 ReactDOM.render(<App />, document.getElementById('podcast-main'));
