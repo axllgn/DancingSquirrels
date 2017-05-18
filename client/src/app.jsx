@@ -26,7 +26,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPodcastView: 'Top 10 Podcasts!',
+      currentPodcastView: 'Top 10',
       podcasts: [],
       podcastEpisodes: {},
       loggedIn: false
