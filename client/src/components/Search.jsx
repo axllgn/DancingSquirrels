@@ -31,10 +31,29 @@ class Search extends React.Component {
     this.state = { open: false };
 
     this.onSearch = this.onSearch.bind(this);
+    
     this.handleToggle = this.handleToggle.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    
     this.onMenuClick = this.onMenuClick.bind(this);
-  }
+    this.arts = this.arts.bind(this) 
+    this.comedy = this.comedy.bind(this) 
+    this.education = this.education.bind(this) 
+    this.kidsFamily = this.kidsFamily.bind(this) 
+    this.health = this.health.bind(this) 
+    this.tvFilm = this.tvFilm.bind(this)
+    this.music = this.music.bind(this)
+    this.newsPolitics = this.newsPolitics.bind(this) 
+    this.religionSpirituality = this.religionSpirituality.bind(this) 
+    this.scienceMedicine = this.scienceMedicine.bind(this) 
+    this.sportsRecreation = this.sportsRecreation.bind(this) 
+    this.technology = this.technology.bind(this) 
+    this.business = this.business.bind(this) 
+    this.gamesHobbies = this.gamesHobbies.bind(this) 
+    this.societyCulture = this.societyCulture.bind(this) 
+    this.governmentOrganizations = this.governmentOrganizations.bind(this)
+
+}
 
   handleToggle() { this.setState({open: !this.state.open}); }
 
@@ -49,10 +68,58 @@ class Search extends React.Component {
     }
   }
 
-  onMenuClick() {
-    this.props.onMenuClick();
+  onMenuClick(genreID) {
+    this.props.onMenuClick(genreID);
     this.handleClose();
   }
+  arts() {
+    this.onMenuClick(1301);
+  } 
+  comedy() {
+    this.onMenuClick(1303);
+  } 
+  education() {
+    this.onMenuClick(1304);
+  } 
+  kidsFamily() {
+    this.onMenuClick(1305);
+  } 
+  health() {
+    this.onMenuClick(1307);
+  } 
+  tvFilm() {
+    this.onMenuClick(1309);
+  } 
+  music() {
+    this.onMenuClick(1310);
+  } 
+  newsPolitics() {
+    this.onMenuClick(1311);
+  } 
+  religionSpirituality() {
+    this.onMenuClick(1314);
+  } 
+  scienceMedicine() {
+    this.onMenuClick(1315);
+  } 
+  sportsRecreation() {
+    this.onMenuClick(1316);
+  } 
+  technology() {
+    this.onMenuClick(1318);
+  } 
+  business() {
+    this.onMenuClick(1321);
+  } 
+  gamesHobbies() {
+    this.onMenuClick(1323);
+  } 
+  societyCulture() {
+    this.onMenuClick(1324);
+  } 
+  governmentOrganizations() {
+   this.onMenuClick(1325);
+  } 
 
   render() {
     return (
@@ -65,35 +132,35 @@ class Search extends React.Component {
             <MenuIcon 
               onTouchTap ={this.handleToggle} 
               className="whiteIcon"/>
-            <Drawer
-              docked={false}
-              width={300}
-              open={this.state.open}
-              onRequestChange={(open) => this.setState({open})}
-              >
-              <MenuItem onTouchTap={this.handleClose}>Favorites</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Unfinished</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>History</MenuItem>
-              <Divider/>
-              <MenuItem onTouchTap={this.handleClose}>Arts</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Comedy</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Education</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Kids & Family</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Health</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>TV & Film</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Music</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>News & Politics</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Religion & Spirituality</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Science & Medicine</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Sports & Recreation</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Technology</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Business</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Games & Hobbies</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Society & Culture</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Government & Organizations</MenuItem>
-            </Drawer>
-            
 
+          <Drawer
+            docked={false}
+            width={300}
+            open={this.state.open}
+            onRequestChange={(open) => this.setState({open})}
+          >
+            <MenuItem onTouchTap={this.handleClose}>Favorites</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Unfinished</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>History</MenuItem>
+            <Divider/>
+            <MenuItem onTouchTap={this.arts}>Arts</MenuItem>
+            <MenuItem onTouchTap={this.comedy}>Comedy</MenuItem>
+            <MenuItem onTouchTap={this.education}>Education</MenuItem>
+            <MenuItem onTouchTap={this.kidsFamily}>Kids & Family</MenuItem>
+            <MenuItem onTouchTap={this.health}>Health</MenuItem>
+            <MenuItem onTouchTap={this.tvFilm}>TV & Film</MenuItem>
+            <MenuItem onTouchTap={this.music}>Music</MenuItem>
+            <MenuItem onTouchTap={this.newsPolitics}>News & Politics</MenuItem>
+            <MenuItem onTouchTap={this.religionSpirituality}>Religion & Spirituality</MenuItem>
+            <MenuItem onTouchTap={this.scienceMedicine}>Science & Medicine</MenuItem>
+            <MenuItem onTouchTap={this.sportsRecreation}>Sports & Recreation</MenuItem>
+            <MenuItem onTouchTap={this.technology}>Technology</MenuItem>
+            <MenuItem onTouchTap={this.business}>Business</MenuItem>
+            <MenuItem onTouchTap={this.gamesHobbies}>Games & Hobbies</MenuItem>
+            <MenuItem onTouchTap={this.societyCulture}>Society & Culture</MenuItem>
+            <MenuItem onTouchTap={this.governmentOrganizations}>Government & Organizations</MenuItem>
+
+          </Drawer>
           </IconButton>
 
           <ToolbarTitle text="NETPODS" style={{ color: 'white', letterSpacing: '2px' }} />

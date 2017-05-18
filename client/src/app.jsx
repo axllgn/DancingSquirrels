@@ -55,8 +55,16 @@ class App extends React.Component {
       });
   }
 
-  onMenuClick() {
-    console.log('Menu clicked from client!');
+  onMenuClick(genreID) {
+    console.log('Menu clicked from client with ID: ', genreID);
+     $.post('/menu', { menuItem: genreID })
+      .done((results) => {
+        console.log(results);
+        this.setState({
+          podcasts: results
+        });
+        this.updateRatings();
+      });
   }
 
   updateRatings() {
