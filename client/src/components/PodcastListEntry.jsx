@@ -45,10 +45,11 @@ class PodcastListEntry extends React.Component {
             onClick={ this.onClickPodcast }
             key={this.props.podcast.artworkUrl100}
             title={this.props.podcast.collectionName}
-            cols={4}
-            rows={4}
-            actionIcon={<IconButton><StarBorder color="rgb(0, 188, 212)" /></IconButton>}
-            titleStyle={{color: 'rgb(0, 188, 212)'}}
+            cols={8}
+            rows={8}
+            actionIcon={<IconButton><StarBorder color="#333" /></IconButton>}
+            titleStyle={{color: '#333'}}
+            titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
             style={{ border: '1px solid red'}}
           >
             <img src={this.props.podcast.artworkUrl100} />

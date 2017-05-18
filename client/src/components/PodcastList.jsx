@@ -58,10 +58,34 @@ class PodcastList extends React.Component {
 
         <MUI>
         <div style={styles.root}>
-        <GridList style={ styles.gridList } cols={2.2}>
+        <GridList style={ styles.gridList } 
+                  cols={4}
+                  cellHeight='auto'
+                  padding={20}
+                  >
 
           { this.props.podcasts.map( (podcast, itr) => {
 
+            return ( 
+
+              <GridTile
+                onClick={ this.onClickPodcast }
+                key={podcast.artworkUrl100}
+                cols={8}
+                rows={4}
+                style={{ border: '1px solid red'}}
+              >
+                <img src={podcast.artworkUrl100} />
+              </GridTile> )
+          
+           {/* 
+            
+            chunk from the gridtile
+            actionIcon={<IconButton><StarBorder color="#333" /></IconButton>}
+                titleStyle={{color: '#333'}}
+                titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)" 
+            
+            
             return (<div>
 
                       <PodcastListEntry
@@ -76,7 +100,8 @@ class PodcastList extends React.Component {
                                   Favorite 
                           </button> : null }
 
-                    </div> );
+                    </div> );  */}
+
             
           }) }
 
