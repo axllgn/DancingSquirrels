@@ -16,6 +16,8 @@ class UserHomePage extends React.Component {
     let hrefArr = window.location.href.split('/');
     this.username = hrefArr[hrefArr.length - 1];
     this.getFavorites = this.getFavorites.bind(this);
+
+    console.log("USER HOMEPAGE P",this.props);
   }
 
   getFavorites() {
