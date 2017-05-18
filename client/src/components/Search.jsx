@@ -17,14 +17,21 @@ import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
+import Drawer from 'material-ui/Drawer';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { open: false };
 
     this.onSearch = this.onSearch.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
+
+  handleToggle() { this.setState({open: !this.state.open}); }
+
+  handleClose() { this.setState({open: false}); }
 
   onSearch(event) {
     // console.log(this._query.value);
@@ -67,9 +74,19 @@ class Search extends React.Component {
         > */}
 
         <Toolbar>
-
+          <Drawer
+            docked={false}
+            width={200}
+            open={this.state.open}
+            onRequestChange={(open) => this.setState({open})}
+          >
+            <MenuItem onTouchTap={this.handleClose}>Favorites</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Unfinished</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>History</MenuItem>
+          </Drawer>
           <IconButton touch={true}>
-            <MenuIcon />
+            <MenuIcon 
+              onTouchTap ={this.handleToggle}/>
           </IconButton>
 
 
