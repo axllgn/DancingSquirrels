@@ -14,7 +14,7 @@ class PodcastList extends React.Component {
     super(props);
     let hrefArr = window.location.href.split('/');
     this.username = hrefArr[hrefArr.length - 1];
-
+    this.onClickPodcast = this.onClickPodcast.bind(this);
     console.log("LIST PROPS", props)
   }
 
@@ -31,6 +31,16 @@ class PodcastList extends React.Component {
       .done((result) => {
         this.props.getFavPodcasts();
       });
+  }
+
+  onClickPodcast(podcast) {
+    console.log("CLICKED ",podcast)
+    var context = this;
+    this.props.onClickPodcast(
+      podcast.feedUrl, podcast.collectionId, 
+      () => {
+        this.context.router.history.push('/episodes');
+    });
   }
 
   render() {
@@ -54,7 +64,9 @@ class PodcastList extends React.Component {
 
       <div>
 
-        <h3 className='podcast-results'>{this.props.currentPodcastView}</h3>
+        <h3 className='podcast-results'>
+        { this.props.currentPodcastView ? this.props.currentPodcastView.toUpperCase() : null  }
+        </h3>
 
         <MUI>
         <div style={styles.root}>
@@ -67,16 +79,18 @@ class PodcastList extends React.Component {
           { this.props.podcasts.map( (podcast, itr) => {
 
             return ( 
-
-              <GridTile
-                onClick={ this.onClickPodcast }
-                key={podcast.artworkUrl100}
-                cols={8}
-                rows={4}
-                style={{ border: '1px solid red'}}
-              >
-                <img src={podcast.artworkUrl100} />
-              </GridTile> )
+              <div>
+                <GridTile
+                  onClick={ () => this.onClickPodcast(podcast) }
+                  key={podcast.artworkUrl100}
+                  cols={8}
+                  rows={4}
+                  style={{ border: '1px solid red'}}
+                  subtitle='Subtitle' >
+                  <img src={podcast.artworkUrl100} />
+                </GridTile>
+                <p>TEST STRING</p>
+              </div> )
           
            {/* 
             
@@ -124,7 +138,7 @@ class PodcastList extends React.Component {
             <PodcastListEntry
               key={itr}
               podcast={podcast}
-              onClickPodcast={this.props.onClickPodcast}
+              onClickkPodcast={this.props.onClickPodcast}
               loggedIn={this.props.loggedIn}/>
             { this.props.loggedIn
               ? <button className='favorite-button' onClick={this.onFavorite.bind(this, podcast)}>Favorite</button>
@@ -142,6 +156,10 @@ PodcastList.propTypes = {
   onClickPodcast: PropTypes.func.isRequired,
   getFavPodcasts: PropTypes.func,
   loggedIn: PropTypes.bool
+};
+
+PodcastList.contextTypes = {
+  router: PropTypes.object
 };
 
 export default PodcastList;
