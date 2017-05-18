@@ -42,7 +42,7 @@ class WriteReview extends React.Component {
           });
 
     } else {
-      window.location.href = '/#/login';
+      window.location.href = '/login';
     }
   }
 

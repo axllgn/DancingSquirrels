@@ -27,7 +27,7 @@ class Rating extends React.Component {
       $.post('/addRating', {collectionId: this.props.collectionId, rating: rating, username: this.state.loggedIn})
         .done(result => console.log(result));
     } else {
-      window.location.href = '/#/login';
+      window.location.href = '/login';
     }
   }
 

@@ -31,7 +31,7 @@ class Signup extends React.Component {
         alert('Username already in use. Please select another one.');
       }
       if (results === 'success') {
-        this.props.history.push('/login/local')
+        this.props.history.push('/loginLocal')
       }
     })
     e.preventDefault();

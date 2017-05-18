@@ -182,8 +182,8 @@ class Search extends React.Component {
             </Link>
 
             <TextField hintText="Search"
-                   onKeyPress={this.onSearch}
-                   ref={(input) => this._query = input } />
+                       onKeyPress={this.onSearch}
+                       ref={(input) => this._query = input } />
 
           </ToolbarGroup>
         </Toolbar>

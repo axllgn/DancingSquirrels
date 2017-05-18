@@ -54,7 +54,7 @@ class PodcastList extends React.Component {
 
       <div>
 
-        <h3 className='podcast-results'>{this.props.currentPodcastView.toUpperCase()}</h3>
+        <h3 className='podcast-results'>{this.props.currentPodcastView}</h3>
 
         <MUI>
         <div style={styles.root}>
