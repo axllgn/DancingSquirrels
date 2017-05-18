@@ -18,6 +18,7 @@ import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
 import Drawer from 'material-ui/Drawer';
+import Divider from 'material-ui/Divider';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
 class Search extends React.Component {
@@ -80,13 +81,31 @@ class Search extends React.Component {
               onTouchTap ={this.handleToggle}/>
           <Drawer
             docked={false}
-            width={200}
+            width={300}
             open={this.state.open}
             onRequestChange={(open) => this.setState({open})}
           >
             <MenuItem onTouchTap={this.handleClose}>Favorites</MenuItem>
             <MenuItem onTouchTap={this.handleClose}>Unfinished</MenuItem>
             <MenuItem onTouchTap={this.handleClose}>History</MenuItem>
+            <Divider/>
+            <MenuItem onTouchTap={this.handleClose}>Arts</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Comedy</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Education</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Kids & Family</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Health</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>TV & Film</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Music</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>News & Politics</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Religion & Spirituality</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Science & Medicine</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Sports & Recreation</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Technology</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Business</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Games & Hobbies</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Society & Culture</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Government & Organizations</MenuItem>
+
           </Drawer>
           </IconButton>
 
