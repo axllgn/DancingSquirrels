@@ -7,6 +7,12 @@ body {
   width: 100%;
 }
 
+.main-container {
+  
+  padding: 40px 25px;
+  border: 1px solid black;
+}
+
 .podcast-results {
   color: #483D8B;
   font-family: helvetica;
@@ -16,6 +22,51 @@ body {
   text-align: center;
 }
 
+.gridListContainer {
+  display: 'flex';
+  flex-wrap: 'wrap';
+  justify-content: 'space-around';
+  /*border: 1px solid red;*/
+  width: 90%;
+  margin: 0 auto;
+}
+
+.favBtn{
+  border: 1px solid blue;
+  /*z-index: 800;*/
+  /*transform: translateY(-100px);*/
+  float: right;
+  
+}
+.tile {
+  width: auto;
+  float: left;
+}
+
+.tileImg{
+  transform: translateY(0) translateX(0);
+  border-radius: 6px 0 0 6px;
+  translate: translateY(0) !important;
+  width: 100px;
+}
+
+.tileContainer {
+  /*border: 2px solid red;*/
+  width: 290px;
+  height: 120px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  /*box-shadow: 1px 1px 1px #eee;*/
+}
+
+.tileInfo {
+  float: left;
+  /*margin: auto 0 auto 10px;
+  width: auto;*/
+  margin: 10px 0 0 10px;
+  /*border: 1px solid red;*/
+  max-width: 130px;
+}
 .whiteIcon{
   color: white !important;
 }

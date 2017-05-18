@@ -15,8 +15,8 @@ const PodcastMain = (props) => {
         podcasts={props.podcasts}
         onClickPodcast={props.onClickPodcast} 
         currentPodcastView={props.currentPodcastView}/>
-        
     </div>
+    
   );
 };
 

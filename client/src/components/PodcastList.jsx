@@ -48,12 +48,12 @@ class PodcastList extends React.Component {
     const styles = { root: {
                       display: 'flex',
                       flexWrap: 'wrap',
-                      justifyContent: 'space-around',
+                      justifyContent: 'space-around'
                     },
                     gridList: {
                       display: 'flex',
                       flexWrap: 'nowrap',
-                      overflowX: 'auto',
+                      overflowX: 'auto'
                     },
                     titleStyle: {
                       color: 'rgb(0, 188, 212)',
@@ -69,7 +69,7 @@ class PodcastList extends React.Component {
         </h3>
 
         <MUI>
-        <div style={styles.root}>
+        <div className="gridListContainer" style={styles.root}>
         <GridList style={ styles.gridList } 
                   cols={4}
                   cellHeight='auto'
@@ -77,19 +77,34 @@ class PodcastList extends React.Component {
                   >
 
           { this.props.podcasts.map( (podcast, itr) => {
-
+            { console.log("POD", podcast) }
             return ( 
-              <div>
+              <div className="tileContainer" onClick={ () => this.onClickPodcast(podcast) }>
+
+              { this.props.loggedIn ? 
+                    <IconButton className="favBtn"
+                                onClick={ this.onFavorite.bind(this, podcast) }> 
+                              <StarBorder color="#333" /> 
+                      </IconButton> : null }
+
+                      
                 <GridTile
-                  onClick={ () => this.onClickPodcast(podcast) }
                   key={podcast.artworkUrl100}
-                  cols={8}
+                  cols={4}
                   rows={4}
-                  style={{ border: '1px solid red'}}
-                  subtitle='Subtitle' >
-                  <img src={podcast.artworkUrl100} />
+                  actionIcon={ 
+                    <IconButton className="favBtn">
+                      <StarBorder color="#333" />
+                    </IconButton>
+                  }
+                  className="tile">
+                  <img className="tileImg" src={podcast.artworkUrl100}/>
                 </GridTile>
-                <p>TEST STRING</p>
+                <div className="tileInfo">
+                  <h4>{ podcast.collectionName }</h4>
+                  <em>{ podcast.primaryGenreName }</em>
+                </div>
+                  
               </div> )
           
            {/* 
