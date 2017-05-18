@@ -123,23 +123,24 @@ class App extends React.Component {
                                   podcasts={this.state.podcasts}
                                   onClickPodcast={this.onClickPodcast}
                                   currentPodcastView={this.state.currentPodcastView} />)} />
-            <Route path="/login/local" component={LocalLogin} />
+            <Route path="/loginLocal" component={LocalLogin} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/podcasts/episodes"
+            <Route path="/episodes" 
                    component={() => (<PodcastEpisodes podcastEpisodes={this.state.podcastEpisodes} /> )} />
+            
+            <Route path="/logout" component={() => (<PodcastMain
+                                  onSearch={this.onSearch}
+                                  podcasts={this.state.podcasts}
+                                  onClickPodcast={this.onClickPodcast}/> )} />
             <Route
-              name="user"
-              path="/user/:username"
+              
+              path="/:username"
               component={() => (<UserHomePage
                                   onSearch={this.onSearch}
                                   podcasts={this.state.podcasts}
                                   onClickPodcast={this.onClickPodcast}/> )} />
 
-            <Route path="/logout" component={() => (<PodcastMain
-                                  onSearch={this.onSearch}
-                                  podcasts={this.state.podcasts}
-                                  onClickPodcast={this.onClickPodcast}/> )} />
 
 
           </Switch>

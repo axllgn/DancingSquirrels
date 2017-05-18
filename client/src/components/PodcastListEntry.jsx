@@ -28,7 +28,7 @@ class PodcastListEntry extends React.Component {
 
   onClickPodcast() {
     this.props.onClickPodcast(this.props.podcast.feedUrl, this.props.podcast.collectionId, () => {
-      this.context.router.history.push('/podcasts/episodes');
+      this.context.router.history.push('/episodes');
     });
   }
 

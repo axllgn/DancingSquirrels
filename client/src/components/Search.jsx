@@ -29,8 +29,8 @@ class Search extends React.Component {
                                                                 this.props.currentPodcastView('Top 10 Podcasts!');
                                                               } 
                                                        }>Home</Link>
-          <Link to='/login' className='header-link'>Login</Link>
-          <Link to='/logout' className='header-link' onClick={this.props.logoutUser}>Logout</Link>
+          <Link to='login' className='header-link'>Login</Link>
+          <Link to='logout' className='header-link' onClick={this.props.logoutUser}>Logout</Link>
           <input
             type='text'
             placeholder="Search"

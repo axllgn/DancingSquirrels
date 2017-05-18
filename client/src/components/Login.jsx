@@ -1,6 +1,7 @@
 import React from 'react';
 import Signup from './Signup.jsx';
 import LocalLogin from './LocalLogin.jsx';
+import $ from 'jquery';
 import { Link } from 'react-router-dom';
 
 
@@ -19,10 +20,12 @@ const Login = () => {
           </a>
         </div>
         <div className="authButtons">
-          <a href="/login/github"><img src='https://help.dropsource.com/wp-content/uploads/sites/4/2017/02/gh-login-button.png' width ="300"/></a>
+          <a href="/login/github">
+            <img src='https://help.dropsource.com/wp-content/uploads/sites/4/2017/02/gh-login-button.png' width ="300"/>
+          </a>
         </div>
         <div className="login">
-          <Link to="/login/local" className='header-link'>Login</Link>
+          <Link to="/loginLocal" className='header-link'>Login</Link>
         </div>
         <div className="login">
           <Link to="/signup" className='header-link'>Signup</Link>
