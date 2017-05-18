@@ -27,6 +27,7 @@ class Search extends React.Component {
 
     this.onSearch = this.onSearch.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   handleToggle() { this.setState({open: !this.state.open}); }
