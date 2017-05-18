@@ -12,6 +12,16 @@ import LocalLogin from './components/LocalLogin.jsx';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+/* astros */
+// import { AppBar } from 'react-toolbox/lib/app_bar';
+import MUI from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -109,39 +119,43 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
-          <Search onSearch={this.onSearch}
-                  getHomePage={this.getHomePage}
-                  logoutUser={this.logoutUser}
-                  currentPodcastView={this.currentPodcastView}/>
-          <Switch>
-            <Route
-              name="root"
-              exact path="/"
-              component={() => (<PodcastMain
-                                  onSearch={this.onSearch}
-                                  podcasts={this.state.podcasts}
-                                  onClickPodcast={this.onClickPodcast}
-                                  currentPodcastView={this.state.currentPodcastView} />)} />
-            <Route path="/loginLocal" component={LocalLogin} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/episodes" 
-                   component={() => (<PodcastEpisodes podcastEpisodes={this.state.podcastEpisodes} /> )} />
-            
-            <Route path="/logout" component={() => (<PodcastMain
-                                  onSearch={this.onSearch}
-                                  podcasts={this.state.podcasts}
-                                  onClickPodcast={this.onClickPodcast}/> )} />
-            <Route
-              
-              path="/:username"
-              component={() => (<UserHomePage
-                                  onSearch={this.onSearch}
-                                  podcasts={this.state.podcasts}
-                                  onClickPodcast={this.onClickPodcast}/> )} />
+      <div>
+        <Search onSearch={this.onSearch}
+                getHomePage={this.getHomePage}
+                logoutUser={this.logoutUser}
+                currentPodcastView={this.currentPodcastView}/>
+        <Switch>
+          <Route name="root"
+                 exact path="/"
+                 component={() => (<PodcastMain 
+                                      onSearch={this.onSearch}
+                                      podcasts={this.state.podcasts}
+                                      onClickPodcast={this.onClickPodcast}
+                                      currentPodcastView={this.state.currentPodcastView} />)} />
+          <Route path="/loginLocal" 
+                 component={LocalLogin} />
 
+          <Route path="/login" 
+                 component={Login} />
 
+          <Route path="/signup" 
+                 component={Signup} />
+
+          <Route path="/episodes" 
+                 component={() => (<PodcastEpisodes 
+                                      podcastEpisodes={this.state.podcastEpisodes} /> )} />
+          
+          <Route path="/logout" 
+                 component={() => (<PodcastMain 
+                                      onSearch={this.onSearch}
+                                      podcasts={this.state.podcasts}
+                                      onClickPodcast={this.onClickPodcast}/> )} />
+          <Route
+            path="/:username"
+            component={() => (<UserHomePage
+                                onSearch={this.onSearch}
+                                podcasts={this.state.podcasts}
+                                onClickPodcast={this.onClickPodcast}/> )} />
 
           </Switch>
         </div>
@@ -149,6 +163,5 @@ class App extends React.Component {
     );
   }
 }
-
 
 ReactDOM.render(<App />, document.getElementById('podcast-main'));

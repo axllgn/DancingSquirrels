@@ -13,6 +13,8 @@ class PodcastEpisodes extends React.Component {
       rating: this.props.podcastEpisodes.rating || 0,
       noofreviews: this.props.podcastEpisodes.noofreviews || 0
     };
+
+    console.log("PodcastEpisodes Props", this.props.podcastEpisodes)
   }
 
   componentDidMount() {

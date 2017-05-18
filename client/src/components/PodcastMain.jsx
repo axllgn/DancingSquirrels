@@ -4,6 +4,9 @@ import PodcastList from './PodcastList.jsx';
 import PropTypes from 'prop-types';
 
 const PodcastMain = (props) => {
+
+  console.log("PodcastMain PROPS", props);
+
   return (
     <div className='main-container'>
       <PodcastList
