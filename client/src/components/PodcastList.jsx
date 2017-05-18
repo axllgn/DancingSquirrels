@@ -34,11 +34,12 @@ class PodcastList extends React.Component {
   }
 
   onClickPodcast(podcast) {
+    console.log("CLICKED ",podcast)
     var context = this;
     this.props.onClickPodcast(
       podcast.feedUrl, podcast.collectionId, 
       () => {
-        this.context.router.history.push('/podcasts/episodes');
+        this.context.router.history.push('/episodes');
     });
   }
 
@@ -63,7 +64,9 @@ class PodcastList extends React.Component {
 
       <div>
 
-        <h3 className='podcast-results'>{ this.props.currentPodcastView ? this.props.currentPodcastView.toUpperCase() : null  }</h3>
+        <h3 className='podcast-results'>
+        { this.props.currentPodcastView ? this.props.currentPodcastView.toUpperCase() : null  }
+        </h3>
 
         <MUI>
         <div style={styles.root}>
@@ -83,8 +86,7 @@ class PodcastList extends React.Component {
                   cols={8}
                   rows={4}
                   style={{ border: '1px solid red'}}
-                  subtitle='Subtitle'
-                >
+                  subtitle='Subtitle' >
                   <img src={podcast.artworkUrl100} />
                 </GridTile>
                 <p>TEST STRING</p>
