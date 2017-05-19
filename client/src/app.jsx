@@ -29,9 +29,42 @@ class App extends React.Component {
     this.state = {
       currentPodcastView: 'Top 10 Podcasts!',
       podcasts: [],
+      arts: [],
+      comedy: [],
+      education: [],
+      kidsFamily: [],
+      health: [],
+      tvFilm: [],
+      music: [],
+      newsPolitics: [],
+      religionSpirituality: [],
+      scienceMedicine: [],
+      sportsRecreation: [],
+      technology: [],
+      business: [],
+      gamesHobbies: [],
+      societyCulture: [],
+      governmentOrganizations: [],
       podcastEpisodes: {},
       loggedIn: ''
     };
+
+    this.categories = [['arts', 1301], 
+                       ['comedy', 1303], 
+                       ['education', 1304], 
+                       ['kidsFamily',1305], 
+                       ['health',1307], 
+                       ['tvFilm', 1309], 
+                       ['music', 1310], 
+                       ['newsPolitics', 1311],
+                       ['religionSpirituality', 1314],
+                       ['scienceMedicine', 1315],
+                       ['sportsRecreation', 1316],
+                       ['technology', 1318],
+                       ['business', 1321],
+                       ['gamesHobbies', 1323],
+                       ['societyCulture', 1324],
+                       ['governmentOrganizations', 1325]]
 
     this.currentPodcastView = this.currentPodcastView.bind(this);
     this.getHomePage = this.getHomePage.bind(this);
@@ -121,6 +154,7 @@ class App extends React.Component {
   }
 
   getHomePage() {
+
     $.get('/topTen')
       .done((results) => {
         this.setState({
@@ -128,6 +162,18 @@ class App extends React.Component {
         });
         this.updateRatings();
       });
+
+    this.categories.forEach((category) => {
+
+      $.post(`/${category[0]}`, { genreID: category[1] })
+        .done((results) => {
+          this.setState({
+            category: results
+          });
+          this.updateRatings();
+      });
+      
+    })
   }
 
   logoutUser() {
@@ -162,6 +208,22 @@ class App extends React.Component {
                  component={() => (<PodcastMain 
                                       onSearch={this.onSearch}
                                       podcasts={this.state.podcasts}
+                                      arts={this.state.arts}
+                                      comedy={this.state.comedy}
+                                      education={this.state.education}
+                                      kidsFamily={this.state.kidsFamily}
+                                      health={this.state.health}
+                                      tvFilm={this.state.tvFilm}
+                                      music={this.state.music}
+                                      newsPolitics={this.state.newsPolitics}
+                                      religionSpirituality={this.state.religionSpirituality}
+                                      scienceMedicine={this.state.scienceMedicine}
+                                      sportsRecreation={this.state.sportsRecreation}
+                                      technology={this.state.technology}
+                                      business={this.state.business}
+                                      gamesHobbies={this.state.gamesHobbies}
+                                      societyCulture={this.state.societyCulture}
+                                      governmentOrganizations={this.state.governmentOrganizations}
                                       onClickPodcast={this.onClickPodcast}
                                       currentPodcastView={this.state.currentPodcastView}
                                       onMenuClick={this.onMenuClick}
@@ -183,6 +245,22 @@ class App extends React.Component {
                  component={() => (<PodcastMain 
                                       onSearch={this.onSearch}
                                       podcasts={this.state.podcasts}
+                                      arts={this.state.arts}
+                                      comedy={this.state.comedy}
+                                      education={this.state.education}
+                                      kidsFamily={this.state.kidsFamily}
+                                      health={this.state.health}
+                                      tvFilm={this.state.tvFilm}
+                                      music={this.state.music}
+                                      newsPolitics={this.state.newsPolitics}
+                                      religionSpirituality={this.state.religionSpirituality}
+                                      scienceMedicine={this.state.scienceMedicine}
+                                      sportsRecreation={this.state.sportsRecreation}
+                                      technology={this.state.technology}
+                                      business={this.state.business}
+                                      gamesHobbies={this.state.gamesHobbies}
+                                      societyCulture={this.state.societyCulture}
+                                      governmentOrganizations={this.state.governmentOrganizations}
                                       onClickPodcast={this.onClickPodcast}
                                       currentPodcastView={this.state.currentPodcastView}
                                       onMenuClick={this.onMenuClick} 
@@ -194,6 +272,22 @@ class App extends React.Component {
                                 loggedIn={this.state.loggedIn}
                                 onSearch={this.onSearch}
                                 podcasts={this.state.podcasts}
+                                arts={this.state.arts}
+                                comedy={this.state.comedy}
+                                education={this.state.education}
+                                kidsFamily={this.state.kidsFamily}
+                                health={this.state.health}
+                                tvFilm={this.state.tvFilm}
+                                music={this.state.music}
+                                newsPolitics={this.state.newsPolitics}
+                                religionSpirituality={this.state.religionSpirituality}
+                                scienceMedicine={this.state.scienceMedicine}
+                                sportsRecreation={this.state.sportsRecreation}
+                                technology={this.state.technology}
+                                business={this.state.business}
+                                gamesHobbies={this.state.gamesHobbies}
+                                societyCulture={this.state.societyCulture}
+                                governmentOrganizations={this.state.governmentOrganizations}
                                 onClickPodcast={this.onClickPodcast}
                                 onMenuClick={this.onMenuClick}/> )} />
 
