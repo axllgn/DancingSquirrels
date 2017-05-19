@@ -30,7 +30,7 @@ class App extends React.Component {
       currentPodcastView: 'Top 10 Podcasts!',
       podcasts: [],
       podcastEpisodes: {},
-      loggedIn: false
+      loggedIn: ''
     };
 
     this.currentPodcastView = this.currentPodcastView.bind(this);
@@ -42,12 +42,17 @@ class App extends React.Component {
     this.updateLoggedIn = this.updateLoggedIn.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    this.updateLoggedIn();
     this.getHomePage();
   }
 
   updateLoggedIn(){
-    this.setState({ loggedIn: true });
+    $.get('/getUser')
+      .done((results) => {
+        this.setState({ loggedIn: results.user });
+        console.log('##### USER NAME:', results.user);
+      })    
     console.log("UPDATED STATE IN MAIN")
   }
 

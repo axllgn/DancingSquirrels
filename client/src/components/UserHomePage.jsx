@@ -26,7 +26,7 @@ class UserHomePage extends React.Component {
     var context = this;
     setTimeout(function(){
       console.log("LOGGED IN?", context.props.loggedIn)
-      if ( context.props.loggedIn === false ){
+      if ( !context.props.loggedIn ){
         console.log("will update login");
         context.updateLoggedIn();
       }
@@ -69,7 +69,7 @@ class UserHomePage extends React.Component {
           favPodcasts={this.state.favoritePodcasts}
           getFavPodcasts={this.getFavorites}
           onClickPodcast={this.props.onClickPodcast}
-          loggedIn={this.state.loggedIn} /> 
+          loggedIn={this.props.loggedIn} /> 
 
         {/*<h2 className='podcast-results'>Other Podcasts</h2>
 
