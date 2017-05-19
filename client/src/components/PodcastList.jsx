@@ -19,8 +19,6 @@ class PodcastList extends React.Component {
     this.onClickPodcast = this.onClickPodcast.bind(this);
 
     this.onFavorite = this.onFavorite.bind(this);
-    // console.log("LIST PROPS", this.props)
-
   }
 
   onFavorite(podcast) {
