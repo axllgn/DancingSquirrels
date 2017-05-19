@@ -47,7 +47,7 @@ class App extends React.Component {
   onSearch(query) {
     $.post('/search', { search: query })
       .done((results) => {
-        console.log(results);
+        console.log('Search Query: ', query);
         this.setState({
           podcasts: results
         });
