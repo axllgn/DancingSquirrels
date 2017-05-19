@@ -29,6 +29,7 @@ class PodcastList extends React.Component {
       feedUrl: podcast.feedUrl,
       collectionId: podcast.collectionId,
       artworkUrl100: podcast.artworkUrl100,
+      artworkUrl600: podcast.artworkUrl600,
       collectionName: podcast.collectionName,
       artistName: podcast.artistName
     })
