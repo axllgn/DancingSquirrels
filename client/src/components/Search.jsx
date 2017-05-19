@@ -52,6 +52,7 @@ class Search extends React.Component {
     this.gamesHobbies = this.gamesHobbies.bind(this) 
     this.societyCulture = this.societyCulture.bind(this) 
     this.governmentOrganizations = this.governmentOrganizations.bind(this)
+
 }
 
   handleToggle() { this.setState({open: !this.state.open}); }

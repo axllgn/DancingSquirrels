@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const PodcastMain = (props) => {
 
-  console.log("PodcastMain PROPS", props);
+  // console.log("PodcastMain PROPS", props);
 
   return (
 
