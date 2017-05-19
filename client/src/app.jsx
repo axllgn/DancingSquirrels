@@ -49,22 +49,22 @@ class App extends React.Component {
       loggedIn: ''
     };
 
-    this.categories = [['arts', 1301], 
-                       ['comedy', 1303], 
-                       ['education', 1304], 
-                       ['kidsFamily',1305], 
-                       ['health',1307], 
-                       ['tvFilm', 1309], 
-                       ['music', 1310], 
-                       ['newsPolitics', 1311],
-                       ['religionSpirituality', 1314],
-                       ['scienceMedicine', 1315],
-                       ['sportsRecreation', 1316],
-                       ['technology', 1318],
-                       ['business', 1321],
-                       ['gamesHobbies', 1323],
-                       ['societyCulture', 1324],
-                       ['governmentOrganizations', 1325]]
+    // this.categories = [['arts', 1301], 
+    //                    ['comedy', 1303], 
+    //                    ['education', 1304], 
+    //                    ['kidsFamily',1305], 
+    //                    ['health',1307], 
+    //                    ['tvFilm', 1309], 
+    //                    ['music', 1310], 
+    //                    ['newsPolitics', 1311],
+    //                    ['religionSpirituality', 1314],
+    //                    ['scienceMedicine', 1315],
+    //                    ['sportsRecreation', 1316],
+    //                    ['technology', 1318],
+    //                    ['business', 1321],
+    //                    ['gamesHobbies', 1323],
+    //                    ['societyCulture', 1324],
+    //                    ['governmentOrganizations', 1325]]
 
     this.currentPodcastView = this.currentPodcastView.bind(this);
     this.getHomePage = this.getHomePage.bind(this);
@@ -112,27 +112,27 @@ class App extends React.Component {
   }
 
   updateRatings() {
-    var collectionIds = this.state.podcasts.map((podcast) => {
-      return podcast.collectionId;
-    });
-    $.get('/search-rating', { collectionIds })
-        .done(rating => {
-          if (rating && Object.keys(rating).length > 0) {
-            var newPodcasts = this.state.podcasts;
-            rating.forEach(function(val) {
-              for ( var item of newPodcasts ) {
-                if (item.collectionId === val.podcast_id ) {
-                  item.rating = Math.round(val.rating);
-                  item.noOfReviews = val.noofreviews;
-                  break;
-                }
-              }
-            });
-            this.setState({
-              podcasts: newPodcasts
-            });
-          }
-        });
+    // var collectionIds = this.state.podcasts.map((podcast) => {
+    //   return podcast.collectionId;
+    // });
+    // $.get('/search-rating', { collectionIds })
+    //     .done(rating => {
+    //       if (rating && Object.keys(rating).length > 0) {
+    //         var newPodcasts = this.state.podcasts;
+    //         rating.forEach(function(val) {
+    //           for ( var item of newPodcasts ) {
+    //             if (item.collectionId === val.podcast_id ) {
+    //               item.rating = Math.round(val.rating);
+    //               item.noOfReviews = val.noofreviews;
+    //               break;
+    //             }
+    //           }
+    //         });
+    //         this.setState({
+    //           podcasts: newPodcasts
+    //         });
+    //       }
+    //     });
   }
 
   onClickPodcast(feedUrl, collectionId, callback) {
@@ -163,17 +163,149 @@ class App extends React.Component {
         this.updateRatings();
       });
 
-    this.categories.forEach((category) => {
+    // this.categories.forEach((type) => {
 
-      $.post(`/${category[0]}`, { genreID: category[1] })
+      $.post('/arts', { genreID: 1301 })
         .done((results) => {
           this.setState({
-            category: results
+            arts: results
+          });
+          console.log('-----ART STATE-----', this.state.arts)
+          this.updateRatings();
+      });
+
+      $.post('/comedy', { genreID: 1303 })
+        .done((results) => {
+          this.setState({
+            comedy: results
+          });
+          console.log('-----COMEDY STATE-----', this.state.comedy)
+          this.updateRatings();
+      });
+
+      $.post('/education', { genreID: 1304 })
+        .done((results) => {
+          this.setState({
+            education: results
+          });
+          console.log('-----EDUCATION STATE-----', this.state.education)
+          this.updateRatings();
+      });
+
+      $.post('/kidsFamily', { genreID: 1303 })
+        .done((results) => {
+          this.setState({
+            kidsFamily: results
+          });
+          console.log('-----KIDSFAMILY STATE-----', this.state.kidsFamily)
+          this.updateRatings();
+      });
+
+      $.post('/health', { genreID: 1301 })
+        .done((results) => {
+          this.setState({
+            health: results
+          });
+          console.log('-----HEALTH STATE-----', this.state.health)
+          this.updateRatings();
+      });
+
+      $.post('/tvFilm', { genreID: 1309 })
+        .done((results) => {
+          this.setState({
+            tvFilm: results
+          });
+          console.log('-----tvFilm STATE-----', this.state.tvFilm)
+          this.updateRatings();
+      });
+
+      $.post('/music', { genreID: 1310 })
+        .done((results) => {
+          this.setState({
+            music: results
+          });
+          console.log('-----ART STATE-----', this.state.music)
+          this.updateRatings();
+      });
+
+      $.post('/newsPolitics', { genreID: 1311 })
+        .done((results) => {
+          this.setState({
+            comedy: results
+          });
+    
+          this.updateRatings();
+      });
+
+      $.post('/religionSpirituality', { genreID: 1314 })
+        .done((results) => {
+          this.setState({
+            religionSpirituality: results
           });
           this.updateRatings();
       });
+
+      $.post('/scienceMedicine', { genreID: 1315 })
+        .done((results) => {
+          this.setState({
+            scienceMedicine: results
+          });
+    
+          this.updateRatings();
+      });
+
+      $.post('/sportsRecreation', { genreID: 1316 })
+        .done((results) => {
+          this.setState({
+            sportsRecreation: results
+          });
+          this.updateRatings();
+      });
+
+      $.post('/technology', { genreID: 1318 })
+        .done((results) => {
+          this.setState({
+            technology: results
+          });
+    
+          this.updateRatings();
+      });
+
+      $.post('/business', { genreID: 1321 })
+        .done((results) => {
+          this.setState({
+            business: results
+          });
+          this.updateRatings();
+      });
+
+      $.post('/gamesHobbies', { genreID: 1323 })
+        .done((results) => {
+          this.setState({
+            gamesHobbies: results
+          });
+    
+          this.updateRatings();
+      });
+
+      $.post('/societyCulture', { genreID: 1324 })
+        .done((results) => {
+          this.setState({
+            societyCulture: results
+          });
+          this.updateRatings();
+      });
+
+      $.post('/governmentOrganizations', { genreID: 1325 })
+        .done((results) => {
+          this.setState({
+            governmentOrganizations: results
+          });
+    
+          this.updateRatings();
+      });
       
-    })
+    // })
   }
 
   logoutUser() {

@@ -146,6 +146,198 @@ router.route('/podcast')
     });
   });
 
+  router.route('/arts')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/comedy')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/education')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/kidsFamily')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/health')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/tvFilm')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/music')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/newsPolitics')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/religionSpirituality')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/scienceMedicine')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/sportsRecreation')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/technology')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/business')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/gamesHobbies')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/societyCulture')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
+  router.route('/governmentOrganizations')
+  .post((req, res) => {
+    let url = `https://itunes.apple.com/search?term=podcast&genreId=${req.body.genreID}&limit=10`;
+    utils.fetchCollections(url, (err, results) => {
+      if (results) {
+        res.status(200).send(results);
+      } else {
+        res.status(404).send('We are experiencing some technical difficulties...');
+      }
+    });
+  });
+
 router.route('/search-rating')
  .get((req, res) => {
    UserPodcastModel.fetchAvgRating(req.query.collectionIds, results => {

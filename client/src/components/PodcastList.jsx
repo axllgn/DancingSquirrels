@@ -13,6 +13,7 @@ class PodcastList extends React.Component {
 
   constructor(props) {
     super(props);
+
     let hrefArr = window.location.href.split('/');
     this.username = hrefArr[hrefArr.length - 1];
     this.onClickPodcast = this.onClickPodcast.bind(this);
