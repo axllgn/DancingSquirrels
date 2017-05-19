@@ -32,7 +32,7 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('user_episodes', (table) => {
       table.increments('id').primary();
       table.integer('user_id');
-      table.integer('podcast_id');
+      table.string('episode_id');
       table.integer('time');
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.timestamp('updated_at').defaultTo(knex.fn.now());
