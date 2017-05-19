@@ -10,16 +10,23 @@ import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
 
 class PodcastList extends React.Component {
+
   constructor(props) {
     super(props);
     let hrefArr = window.location.href.split('/');
     this.username = hrefArr[hrefArr.length - 1];
     this.onClickPodcast = this.onClickPodcast.bind(this);
+<<<<<<< 000e2d0a242b06064201dadd27ccd5f8ca339b16
     // console.log("LIST PROPS", props)
+=======
+    this.onFavorite = this.onFavorite.bind(this);
+    // this.pods = props.pods
+    console.log("LIST PROPS", props)
+>>>>>>> Mobile / Login Btn / Favorites in Userpage
   }
 
   onFavorite(podcast) {
-    // console.log(hrefArr[hrefArr.length - 1]);
+    console.log("Adding to Fav!", podcast);
     $.post('/favorite', {
       username: this.username,
       feedUrl: podcast.feedUrl,
@@ -29,6 +36,7 @@ class PodcastList extends React.Component {
       artistName: podcast.artistName
     })
       .done((result) => {
+        console.log("DONE FAV, res",result)
         this.props.getFavPodcasts();
       });
   }
@@ -69,40 +77,53 @@ class PodcastList extends React.Component {
         </h3>
 
         <MUI>
-        <div className="gridListContainer" style={styles.root}>
+
+        <div className="gridListContainer" >
         <GridList style={ styles.gridList } 
                   cols={4}
                   cellHeight='auto'
-                  padding={20}
+                  padding={10}
                   >
 
           { this.props.podcasts.map( (podcast, itr) => {
-            { console.log("POD", podcast) }
+
             return ( 
+<<<<<<< 000e2d0a242b06064201dadd27ccd5f8ca339b16
               <div key={itr} className="tileContainer" onClick={ () => this.onClickPodcast(podcast) }>
+=======
+              <div className="tileContainer">
+>>>>>>> Mobile / Login Btn / Favorites in Userpage
 
               { this.props.loggedIn ? 
                     <IconButton className="favBtn"
-                                onClick={ this.onFavorite.bind(this, podcast) }> 
+                                onClick={ () => this.onFavorite(podcast) }> 
                               <StarBorder color="#333" /> 
                       </IconButton> : null }
 
+<<<<<<< 000e2d0a242b06064201dadd27ccd5f8ca339b16
+=======
+
+>>>>>>> Mobile / Login Btn / Favorites in Userpage
                 <GridTile
+                 onClick={ () => this.onClickPodcast(podcast) }
                   key={podcast.artworkUrl100}
                   cols={4}
                   rows={4}
-                  actionIcon={ 
-                    <IconButton className="favBtn">
+                  actionIcon={
+                    this.props.loggedIn ?  
+                    (<IconButton className="favBtn">
                       <StarBorder color="#333" />
-                    </IconButton>
+                    </IconButton>) : null
                   }
                   className="tile">
                   <img className="tileImg" src={podcast.artworkUrl100}/>
                 </GridTile>
+                <MUI>
                 <div className="tileInfo">
                   <h4>{ podcast.collectionName }</h4>
                   <em>{ podcast.primaryGenreName }</em>
                 </div>
+                </MUI>
                   
               </div> )
           

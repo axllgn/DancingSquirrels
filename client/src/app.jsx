@@ -23,6 +23,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 class App extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -38,10 +39,16 @@ class App extends React.Component {
     this.onClickPodcast = this.onClickPodcast.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
     this.onMenuClick = this.onMenuClick.bind(this);
+    this.updateLoggedIn = this.updateLoggedIn.bind(this);
   }
 
   componentDidMount() {
     this.getHomePage();
+  }
+
+  updateLoggedIn(){
+    this.setState({ loggedIn: true });
+    console.log("UPDATED STATE IN MAIN")
   }
 
   onSearch(query) {
@@ -130,6 +137,7 @@ class App extends React.Component {
   }
 
   render() {
+    var context = this;
     return (
       <Router>
       <div>
@@ -137,7 +145,8 @@ class App extends React.Component {
                 getHomePage={this.getHomePage}
                 logoutUser={this.logoutUser}
                 currentPodcastView={this.currentPodcastView}
-                onMenuClick={this.onMenuClick}/>
+                onMenuClick={this.onMenuClick}
+                loggedIn = {this.state.loggedIn} />
         <Switch>
           <Route name="root"
                  exact path="/"
@@ -169,6 +178,8 @@ class App extends React.Component {
           <Route
             path="/:username"
             component={() => (<UserHomePage
+                                updateLoggedIn={ this.updateLoggedIn }
+                                loggedIn={this.state.loggedIn}
                                 onSearch={this.onSearch}
                                 podcasts={this.state.podcasts}
                                 onClickPodcast={this.onClickPodcast}

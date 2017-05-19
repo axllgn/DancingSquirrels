@@ -5,18 +5,17 @@ import PropTypes from 'prop-types';
 
 const PodcastMain = (props) => {
 
-  // console.log("PodcastMain PROPS", props);
-
   return (
-
     <div className='main-container'>
 
       <PodcastList
         podcasts={props.podcasts}
         onClickPodcast={props.onClickPodcast} 
-        currentPodcastView={props.currentPodcastView}/>
+        currentPodcastView={props.currentPodcastView}
+        loggedIn={ props.loggedIn } />
+
     </div>
-    
+
   );
 };
 
