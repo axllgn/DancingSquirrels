@@ -15,6 +15,8 @@ class PodcastListEntry extends React.Component {
     // this.onFavorite = this.onFavorite.bind(this);
     // let hashArr = window.location.hash.split('/');
     // this.username = hashArr[hashArr.length - 1];
+
+    console.log("PODCAST",this.props)
   }
 
   // onFavorite() {
@@ -39,8 +41,39 @@ class PodcastListEntry extends React.Component {
   }
 
   render() {
+
+    return ( 
+
+              <div className="tileContainer">
+
+                { this.props.loggedIn ? 
+                      <IconButton className="favBtn"
+                                  onClick={ () => this.onFavorite(this.props.podcast) }> 
+                                <StarBorder color="#333" /> 
+                        </IconButton> : null }
+
+                  <div className="tile"
+                        onClick={ () => this.onClickPodcast(this.props.podcast) }
+                        key={this.props.podcast.artworkUrl600} >
+                    
+                    { this.props.loggedIn ?  
+                      (<IconButton className="favBtn">
+                        <StarBorder color="#333" />
+                      </IconButton>) : null }
+
+                    <img className="tileImg" 
+                         src={this.props.podcast.artworkUrl600} />
+
+                  </div>
+
+                  <div className="tileInfo">
+                    <p className="podTitle">{ this.props.podcast.collectionName }</p>
+                    <em className="podGenre">{ this.props.podcast.primaryGenreName }</em>
+                  </div>
+                    
+              </div> )
         
-        return (
+         {/*return (
           <GridTile
             onClick={ this.onClickPodcast }
             key={this.props.podcast.artworkUrl100}
@@ -56,7 +89,7 @@ class PodcastListEntry extends React.Component {
           </GridTile> );
       
 
-    {/* return (
+    return (
 
       
 
