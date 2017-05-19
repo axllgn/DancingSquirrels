@@ -15,21 +15,18 @@ class PodcastEpisodes extends React.Component {
       noofreviews: this.props.podcastEpisodes.noofreviews || 0,
       nowPlaying: null
     };
-
-    console.log("PodcastEpisodes Props", this.props.podcastEpisodes)
   }
 
   componentDidMount() {
     var reactContext = this;
     document.addEventListener('play', function(e){
       reactContext.setState({nowPlaying: $(e.target).attr('src')})
-      //console.log($(e.target).attr('src'))
       console.log('presend', reactContext.state.nowPlaying)
       var audios = document.getElementsByTagName('audio');
         for(var i = 0, len = audios.length; i < len;i++){
             if(audios[i] != e.target){
               if(!audios[i].paused){
-                //********* Send play time ******
+                console.log(audios[i].currentTime)
                 audios[i].pause();
               }
             }
