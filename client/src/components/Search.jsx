@@ -29,7 +29,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = { open: false };
-
+    console.log("SEARCH PROPS", this.props)
     this.onSearch = this.onSearch.bind(this);
     
     this.handleToggle = this.handleToggle.bind(this);
@@ -132,7 +132,7 @@ class Search extends React.Component {
 
       <MUI>
 
-      <Toolbar style={{ backgroundColor: '#F50057' }}>
+      <Toolbar className="toolbar"  style={{ backgroundColor: '#F50057' }}>
         <ToolbarGroup>
           <IconButton touch={true}>
             <MenuIcon 
@@ -144,7 +144,7 @@ class Search extends React.Component {
             width={300}
             open={this.state.open}
             onRequestChange={(open) => this.setState({open})}
-          >
+            >
             <MenuItem onTouchTap={this.handleClose}>Favorites</MenuItem>
             <MenuItem onTouchTap={this.handleClose}>Unfinished</MenuItem>
             <MenuItem onTouchTap={this.handleClose}>History</MenuItem>
@@ -169,23 +169,23 @@ class Search extends React.Component {
           </Drawer>
           </IconButton>
 
-          <ToolbarTitle text="NETPODS" style={{ color: 'white', letterSpacing: '2px' }} />
+          <Link to='/' onClick={() => 
+                {  this.props.getHomePage(); this.props.currentPodcastView('Top 10 Podcasts!');}}>
+            <ToolbarTitle 
+            text="NETPODS" 
+            style={{ color: 'white', letterSpacing: '2px' }} />
+          </Link>
+
         </ToolbarGroup>
 
         <ToolbarGroup>
 
-            <Link to='/' onClick={() => 
+          {/*}  <Link to='/' onClick={() => 
                 {  this.props.getHomePage(); this.props.currentPodcastView('Top 10 Podcasts!');}}>
                 <FlatButton label="Home" style={{ color: 'white' }} />
             </Link> 
 
-            <Link to='/login'>
-              <FlatButton label="Login" style={{ color: 'white' }}/>
-            </Link>
-                    
-            <Link to='/logout' onClick={this.props.logoutUser}>
-              <FlatButton label="Logout" style={{ color: 'white' }}/>
-            </Link>
+          */}
 
             <TextField hintText="Search"
                        ref={(input) => {
@@ -194,6 +194,16 @@ class Search extends React.Component {
                           }
                        }}                       
                        onKeyPress={this.onSearch}/>
+
+          { console.log("Logged in? ", this.props.loggedIn )}
+          { !this.props.loggedIn ?
+            (<Link to='/login'>
+              <FlatButton label="Login" style={{ color: 'white' }}/>
+            </Link>) 
+            :
+            (<Link to='/logout' onClick={ () => this.props.logoutUser() }>
+                <FlatButton label="Logout" style={{ color: 'white' }}/>
+              </Link>) }            
 
           </ToolbarGroup>
         </Toolbar>

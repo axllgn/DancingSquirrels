@@ -9,15 +9,35 @@ import FavoritePodcasts from './FavoritePodcasts.jsx';
 class UserHomePage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loggedIn: true,
-      favoritePodcasts: []
-    };
+    // isntead of setting state, call function that sets on parent container
+    // and call favorites
+
+    this.state = { favoritePodcasts: [] };
+
     let hrefArr = window.location.href.split('/');
     this.username = hrefArr[hrefArr.length - 1];
     this.getFavorites = this.getFavorites.bind(this);
+    this.updateLoggedIn = this.updateLoggedIn.bind(this);
 
     console.log("USER HOMEPAGE P",this.props);
+  }
+
+  componentDidMount(){
+    var context = this;
+    setTimeout(function(){
+      console.log("LOGGED IN?", context.props.loggedIn)
+      if ( context.props.loggedIn === false ){
+        console.log("will update login");
+        context.updateLoggedIn();
+      }
+    },100)
+      
+    context.getFavorites();
+  }
+
+  updateLoggedIn(){
+    console.log("Updating LoggedIn")
+    this.props.updateLoggedIn();
   }
 
   getFavorites() {
@@ -26,6 +46,7 @@ class UserHomePage extends React.Component {
       username: this.username
     })
       .done((result) => {
+        console.log("Favorites received:",result)
         this.setState({
           favoritePodcasts: result
         });
@@ -35,18 +56,28 @@ class UserHomePage extends React.Component {
   render() {
     return (
       <div className='main-container'>
-        <h2 className='podcast-results'>{this.username}'s Home Page</h2>
-        <FavoritePodcasts
+        <h2 className='podcast-results'>{this.username}'s Favorites</h2>
+        
+        { console.log("this.state.favoritePodcasts") }
+
+        <PodcastList
+          podcasts={this.state.favoritePodcasts}
+          onClickPodcast={ this.props.onClickPodcast }
+          loggedIn={this.props.loggedIn}/>
+
+       {/* } <FavoritePodcasts
           favPodcasts={this.state.favoritePodcasts}
           getFavPodcasts={this.getFavorites}
           onClickPodcast={this.props.onClickPodcast}
-          loggedIn={this.state.loggedIn}/>
+          loggedIn={this.state.loggedIn}/> */}
+
         <h2 className='podcast-results'>Add Podcasts!</h2>
+
         <PodcastList
           podcasts={this.props.podcasts}
-          onClickPodcast={this.props.onClickPodcast}
+          onClickPodcast={this.props.onClickPodcast }
           getFavPodcasts={this.getFavorites}
-          loggedIn={this.state.loggedIn}/>
+          loggedIn={this.props.loggedIn}/>
       </div>
     )
   }
