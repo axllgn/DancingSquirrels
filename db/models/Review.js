@@ -6,6 +6,7 @@ const Review = bookshelf.Model.extend({
 });
 
 const insertOne = (options, cb) => {
+  console.log(options)
     Review
     .forge(options)
     .save()

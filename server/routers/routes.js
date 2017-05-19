@@ -1,6 +1,7 @@
 const express = require('express');
 const UserModel = require('../../db/models/User.js');
 const UserPodcastModel = require('../../db/models/User_Podcast.js');
+const UserEpisodesModel = require('../../db/models/UserEpisodes.js');
 const UserFavoritePodcastModel = require('../../db/models/User_Favorite_Podcast.js');
 const verifySession = require('../../db/models/VerifySession.js').verifySession;
 const ReviewModel = require('../../db/models/Review.js');
@@ -229,9 +230,24 @@ router.route('played')
   })
 
 router.route('played')
-  .post((req, res) => {
     // send update time to database
-  })
+ .post((req, res) => {
+   UserModel.fetch(req.body.username, (result) => {
+    var dataToInsert = {
+       user_id: result.id,
+       episode_id: req.body.episode_id,
+       time: req.body.time
+      };
+     UserEpisodesModel.insertOne(dataToInsert, results => {
+       //console.log(results);
+       if (results) {
+         res.status(200).send('success');
+       } else {
+         res.status(404).send('error');
+       }
+     });
+   });
+ });
 
 router.route('/login')
   .get((req, res) => {

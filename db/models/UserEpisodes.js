@@ -1,4 +1,5 @@
 const knex = require('../db.js');
+const VerifySession = require('./VerifySession.js')
 const bookshelf = require('bookshelf')(knex);
 
 const UserEpisodes = bookshelf.Model.extend({
@@ -35,8 +36,24 @@ const lastPlayed = () => {
   
 }
 
+var testOption = {
+  user_id: 1,
+  episode_id: 'www.url.something',
+  time: 120,
+}
+
+/*
+    knex.schema.createTable('user_episodes', (table) => {
+      table.increments('id').primary();
+      table.integer('user_id');
+      table.string('episode_id');
+      table.integer('time');
+      table.timestamp('created_at').defaultTo(knex.fn.now());
+      table.timestamp('updated_at').defaultTo(knex.fn.now());
+      */
+
 module.exports.UserEpisodes = UserEpisodes;
-module.exports.insertOne = insertOne;
-module.exports.fetch = fetchReviews;
+module.exports.fetchTime = fetchTime;
+module.exports.insertTime = insertTime;
 
 
