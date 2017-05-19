@@ -23,7 +23,7 @@ const router = express.Router();
 
 router.route('/logout')
   .get((req, res) => {
-    console.log('--------------------log out----------------');
+    console.log('--------------------log out----------------:');
     sessionHelpers.store.destroy(req.sessionID);
     req.session.destroy();
     res.redirect('/');

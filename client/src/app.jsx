@@ -27,10 +27,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPodcastView: 'Top 10',
+      currentPodcastView: 'Top 10 Podcasts!',
       podcasts: [],
       podcastEpisodes: {},
-      loggedIn: false
+      loggedIn: ''
     };
 
     this.currentPodcastView = this.currentPodcastView.bind(this);
@@ -42,13 +42,17 @@ class App extends React.Component {
     this.updateLoggedIn = this.updateLoggedIn.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    this.updateLoggedIn();
     this.getHomePage();
   }
 
   updateLoggedIn(){
-    this.setState({ loggedIn: true });
-    console.log("UPDATED STATE IN MAIN")
+    $.get('/getUser')
+      .done((results) => {
+        this.setState({ loggedIn: results.user });
+        console.log('----> UPDATE USER NAME:', results.user);
+      })    
   }
 
   onSearch(query) {
@@ -127,7 +131,12 @@ class App extends React.Component {
   }
 
   logoutUser() {
-    $.get('/logout');
+    $.get('/logout', () => {
+      this.setState({ 
+        loggedIn: false,
+      });
+    });
+    ReactRouter.browserHistory.push('/');
   }
 
   currentPodcastView(newPage) {
@@ -175,6 +184,7 @@ class App extends React.Component {
                                       onSearch={this.onSearch}
                                       podcasts={this.state.podcasts}
                                       onClickPodcast={this.onClickPodcast}
+                                      currentPodcastView={this.state.currentPodcastView}
                                       onMenuClick={this.onMenuClick} 
                                       loggedIn={this.state.loggedIn} /> )} />
           <Route
