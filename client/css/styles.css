@@ -41,12 +41,13 @@
 
   .favBtn{
     /*border: 1px solid blue;*/
-    /*z-index: 800;*/
+    z-index: 500;
     /*transform: translateY(-100px);*/
     /*float: right;*/
-    position: absolute;
+/*    position: absolute;
     top: 0;
-    right: 0;
+    right: 0;*/
+    position: inherit !important;
     display: block;
   }
 
@@ -482,6 +483,13 @@
 
 
   /* Login */
+  
+  .header-link{
+    font-family: sans-serif;
+    color: white;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
 
   .login {
     font-family: monospace;
