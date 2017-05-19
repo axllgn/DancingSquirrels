@@ -50,22 +50,40 @@ class PodcastList extends React.Component {
 
   render() {
 
-    const styles = { root: {
-                      display: 'flex',
-                      flexWrap: 'wrap',
-                      justifyContent: 'space-around'
-                    },
-                    gridList: {
-                      display: 'flex',
-                      flexWrap: 'nowrap',
-                      overflowX: 'auto'
-                    },
-                    titleStyle: {
-                      color: 'rgb(0, 188, 212)',
-                    }
-    };
-
     return (
+
+      <div className="podRow">
+
+        <h3 className='podcast-results'>
+          { this.props.currentPodcastView ? 
+            this.props.currentPodcastView.toUpperCase() : null  
+          }
+        </h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.podcasts.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+
+      /*  gridtile version
 
       <div>
 
@@ -116,9 +134,9 @@ class PodcastList extends React.Component {
                 </div>
                 </MUI>
                   
-              </div> )
+              </div> ) */
           
-           {/* 
+        /* 
             
             chunk from the gridtile
             actionIcon={<IconButton><StarBorder color="#333" /></IconButton>}
@@ -140,7 +158,7 @@ class PodcastList extends React.Component {
                                   Favorite 
                           </button> : null }
 
-                    </div> );  */}
+                    </div> );  
 
             
           }) }
@@ -151,8 +169,7 @@ class PodcastList extends React.Component {
       </div>
       
     );
-  }
-}
+  }*/
 
 /*
   <h3 className='podcast-results'>{this.props.currentPodcastView}</h3>
