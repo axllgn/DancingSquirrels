@@ -69,7 +69,7 @@ class Search extends React.Component {
     }
     else {
       setTimeout(() => {
-        this.props.currentPodcastView('Search Results');
+        this.props.currentPodcastView('Top 10 Podcasts!');
       }, 0);
     }
   }
