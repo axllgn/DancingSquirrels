@@ -13,7 +13,7 @@ const PodcastMain = (props) => {
         onClickPodcast={props.onClickPodcast } 
         currentPodcastView={props.currentPodcastView}
         loggedIn={ props.loggedIn } />
-    }
+    
 
     </div>
 

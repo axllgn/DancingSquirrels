@@ -57,7 +57,7 @@ app.get('/auth/github/return',
   });
 
 app.post('/loginLocal', 
-  passport.authenticate('local', { failureRedirect: '/loginLocal' }),
+  passport.authenticate('local', { failureRedirect: '/' }),
   (req, res) => {
     authHelpers.sessionHandler(req);
     res.send({ user: req.session.passport.user });

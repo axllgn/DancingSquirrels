@@ -27,7 +27,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPodcastView: 'Top 10',
+      currentPodcastView: 'Top 10 Podcasts!',
       podcasts: [],
       podcastEpisodes: {},
       loggedIn: false
@@ -127,7 +127,12 @@ class App extends React.Component {
   }
 
   logoutUser() {
-    $.get('/logout');
+    $.get('/logout', () => {
+      this.setState({ 
+        loggedIn: false,
+      });
+    });
+    ReactRouter.browserHistory.push('/');
   }
 
   currentPodcastView(newPage) {
@@ -175,6 +180,7 @@ class App extends React.Component {
                                       onSearch={this.onSearch}
                                       podcasts={this.state.podcasts}
                                       onClickPodcast={this.onClickPodcast}
+                                      currentPodcastView={this.state.currentPodcastView}
                                       onMenuClick={this.onMenuClick} 
                                       loggedIn={this.state.loggedIn} /> )} />
           <Route
