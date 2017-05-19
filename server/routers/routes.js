@@ -216,6 +216,7 @@ router.route('/post-review')
 
 router.route('/getUser')
   .get((req, res) => {
+    console.log('get user', req.session.passport, req.session.passport.user)
     if (req.session.passport && req.session.passport.user) {
       res.send({ user: req.session.passport.user });
     } else {

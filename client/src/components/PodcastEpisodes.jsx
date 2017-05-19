@@ -13,12 +13,23 @@ class PodcastEpisodes extends React.Component {
     this.state = {
       rating: this.props.podcastEpisodes.rating || 0,
       noofreviews: this.props.podcastEpisodes.noofreviews || 0,
-      nowPlaying: null
+      nowPlaying: null,
+      loggedIn: '',
     };
   }
 
   componentDidMount() {
+
     var reactContext = this;
+
+    $.get('/getUser', function(results) {
+      if (results.user) {
+        reactContext.setState({
+          loggedIn: results.user
+        });
+      }
+    });
+
     document.addEventListener('play', function(e){
       console.log('reactContext', reactContext.props.podcastEpisodes)
       reactContext.setState({nowPlaying: reactContext.props.podcastEpisodes.episodes[$(e.target).parent().index() - 1]})

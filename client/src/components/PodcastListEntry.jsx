@@ -17,7 +17,7 @@ class PodcastListEntry extends React.Component {
     // let hashArr = window.location.hash.split('/');
     // this.username = hashArr[hashArr.length - 1];
 
-    console.log("PODCAST",this.props)
+    //console.log("PODCAST",this.props)
   }
 
   onFavorite() {
