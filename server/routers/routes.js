@@ -70,6 +70,9 @@ router.route('/favorite')
           });
         });
       }
+      else {
+        res.redirect('/login');
+      }
 
     })
   });
@@ -111,6 +114,7 @@ router.route('/signup')
 
 router.route('/search')
   .post((req, res) => {
+    console.log('------------Search Query-----------:', req.body.search);
     let url = `https://itunes.apple.com/search?term=${req.body.search}&country=US&entity=podcast&media=podcast&limit=10`;
     utils.fetchCollections(url, (err, results) => {
       if (results) {
@@ -218,10 +222,23 @@ router.route('/getUser')
     }
   });
 
+router.route('/login')
+  .get((req, res) => {
+    res.status(200).sendFile(path.join(__dirname + '/../../client/index.html'));
+  })
+
 router.route('/*')
   .get((req, res) => {
+    verifySession(req.sessionID, function(dbUserName){
+      console.log('testing cookie ids', req.url.substring(1), dbUserName, req.sessionID);
+      if(dbUserName === req.url.substring(1)){
+        res.status(200).sendFile(path.join(__dirname + '/../../client/index.html'));
+      }
+      else {
+        res.redirect('/login');
+      }
+    })
     console.log('*********** star route **********');
-    res.status(200).sendFile(path.join(__dirname + '/../../client/index.html'));
   })
 
 

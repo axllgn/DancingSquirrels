@@ -52,7 +52,7 @@ class Search extends React.Component {
     this.gamesHobbies = this.gamesHobbies.bind(this) 
     this.societyCulture = this.societyCulture.bind(this) 
     this.governmentOrganizations = this.governmentOrganizations.bind(this)
-
+    this.enter = false;
 }
 
   handleToggle() { this.setState({open: !this.state.open}); }
@@ -60,11 +60,17 @@ class Search extends React.Component {
   handleClose() { this.setState({open: false}); }
 
   onSearch(event) {
-    // console.log(this._query.value);
     if (event.charCode === 13) {
-      console.log(event.keyCode);
-      this.props.onSearch(this._query.value);
-      this.props.currentPodcastView('Search Results');
+      setTimeout(() => {
+        console.log('Search Query from component enter: ',this._query)
+        this.props.onSearch(this._query);
+        this.props.currentPodcastView('Search Results');
+      }, 0);
+    }
+    else {
+      setTimeout(() => {
+        this.props.currentPodcastView('Search Results');
+      }, 0);
     }
   }
 
@@ -182,8 +188,12 @@ class Search extends React.Component {
             </Link>
 
             <TextField hintText="Search"
-                       onKeyPress={this.onSearch}
-                       ref={(input) => this._query = input } />
+                       ref={(input) => {
+                          if (input) {
+                            this._query = input.input.value; 
+                          }
+                       }}                       
+                       onKeyPress={this.onSearch}/>
 
           </ToolbarGroup>
         </Toolbar>
