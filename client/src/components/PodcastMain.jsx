@@ -7,12 +7,13 @@ const PodcastMain = (props) => {
 
   return (
     <div className='main-container'>
-
+    { console.log("PODCASTMAIN",props) }
       <PodcastList
-        podcasts={props.podcasts}
-        onClickPodcast={props.onClickPodcast} 
+        podcasts={ props.podcasts }
+        onClickPodcast={props.onClickPodcast } 
         currentPodcastView={props.currentPodcastView}
         loggedIn={ props.loggedIn } />
+    }
 
     </div>
 

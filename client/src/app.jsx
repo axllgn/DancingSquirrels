@@ -155,7 +155,8 @@ class App extends React.Component {
                                       podcasts={this.state.podcasts}
                                       onClickPodcast={this.onClickPodcast}
                                       currentPodcastView={this.state.currentPodcastView}
-                                      onMenuClick={this.onMenuClick} />)} />
+                                      onMenuClick={this.onMenuClick}
+                                      loggedIn={this.state.loggedIn} />)} />
           <Route path="/loginLocal" 
                  component={LocalLogin} />
 
@@ -174,7 +175,8 @@ class App extends React.Component {
                                       onSearch={this.onSearch}
                                       podcasts={this.state.podcasts}
                                       onClickPodcast={this.onClickPodcast}
-                                      onMenuClick={this.onMenuClick} /> )} />
+                                      onMenuClick={this.onMenuClick} 
+                                      loggedIn={this.state.loggedIn} /> )} />
           <Route
             path="/:username"
             component={() => (<UserHomePage

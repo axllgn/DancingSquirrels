@@ -63,7 +63,7 @@ class UserHomePage extends React.Component {
         <PodcastList
           podcasts={this.state.favoritePodcasts}
           onClickPodcast={ this.props.onClickPodcast }
-          loggedIn={this.state.loggedIn}/>
+          loggedIn={this.props.loggedIn}/>
 
        {/* } <FavoritePodcasts
           favPodcasts={this.state.favoritePodcasts}
@@ -77,7 +77,7 @@ class UserHomePage extends React.Component {
           podcasts={this.props.podcasts}
           onClickPodcast={this.props.onClickPodcast }
           getFavPodcasts={this.getFavorites}
-          loggedIn={this.state.loggedIn}/>
+          loggedIn={this.props.loggedIn}/>
       </div>
     )
   }
