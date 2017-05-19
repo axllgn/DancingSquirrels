@@ -224,13 +224,13 @@ router.route('/getUser')
     }
   });
 
-router.route('played')
+router.route('/played')
   .get((req, res) => {
     // if database fetch time has result, return result time to client
     // if database fetch time does not have result, return 0 to client, add entry to server
   })
 
-router.route('played')
+router.route('/played')
     // send update time to database
  .post((req, res) => {
    UserModel.fetch(req.body.username, (result) => {
@@ -239,7 +239,8 @@ router.route('played')
        episode_id: req.body.episode_id,
        time: req.body.time
       };
-     UserEpisodesModel.insertOne(dataToInsert, results => {
+      console.log(dataToInsert)
+     UserEpisodesModel.insertTime(dataToInsert, results => {
        //console.log(results);
        if (results) {
          res.status(200).send('success');

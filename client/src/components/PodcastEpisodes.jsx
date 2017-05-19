@@ -32,7 +32,7 @@ class PodcastEpisodes extends React.Component {
 
     document.addEventListener('play', function(e){
       console.log('reactContext', reactContext.props.podcastEpisodes)
-      reactContext.setState({nowPlaying: reactContext.props.podcastEpisodes.episodes[$(e.target).parent().index() - 1]})
+      reactContext.setState({nowPlaying: $(e.target).attr('src')});
       console.log('presend', reactContext.state.nowPlaying)
       var audios = document.getElementsByTagName('audio');
         for(var i = 0, len = audios.length; i < len;i++){
@@ -71,8 +71,11 @@ class PodcastEpisodes extends React.Component {
   }
 
   updateTime (podcastIndex, time){
-    //console.log(podcastIndex, time)
-/* sends signal to server to update song time*/
+    $.post('/played', {
+      username: this.loggedIn,
+      episode_id: 'www.url.something',
+      time: 120
+    })
   }
 
 
@@ -99,7 +102,7 @@ class PodcastEpisodes extends React.Component {
                 controls={true}
                 preload="none"
                 listenInterval={1000}
-                //onPause={(e)=>{this.updateTime($(e.target).parent().index(), e.target.currentTime)}}
+                onPause={(e)=>{this.updateTime($(e.target).parent().index(), e.target.currentTime)}}
                 onPlay={(e)=>{this.getTime($(e.target).parent().index(), e.target.currentTime)}}
                 //onListen={(e)=>{console.log('this is e', e)}}
                 //onListen={(e)=>{this.updateTime($(e.target).parent().index(), e.target.currentTime)}}
