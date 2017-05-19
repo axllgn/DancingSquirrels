@@ -199,7 +199,7 @@ class Search extends React.Component {
                        }}                       
                        onKeyPress={this.onSearch}/>
 
-          { console.log("Logged in? ", this.props.loggedIn )}
+          { console.log("(Search.jsx) this.props.loggedIn ", this.props.loggedIn )}
           { !this.props.loggedIn ?
             (<Link to='/login'>
               <FlatButton label="Login" style={{ color: 'white' }}/>

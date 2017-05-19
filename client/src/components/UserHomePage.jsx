@@ -25,7 +25,7 @@ class UserHomePage extends React.Component {
   componentDidMount(){
     var context = this;
     setTimeout(function(){
-      console.log("LOGGED IN?", context.props.loggedIn)
+      console.log("(UserHomePage) context.props.loggedIn: ", context.props.loggedIn)
       if ( !context.props.loggedIn ){
         console.log("will update login");
         context.updateLoggedIn();

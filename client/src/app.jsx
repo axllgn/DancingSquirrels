@@ -51,9 +51,8 @@ class App extends React.Component {
     $.get('/getUser')
       .done((results) => {
         this.setState({ loggedIn: results.user });
-        console.log('##### USER NAME:', results.user);
+        console.log('----> UPDATE USER NAME:', results.user);
       })    
-    console.log("UPDATED STATE IN MAIN")
   }
 
   onSearch(query) {
