@@ -20,7 +20,8 @@ class PodcastEpisodes extends React.Component {
   componentDidMount() {
     var reactContext = this;
     document.addEventListener('play', function(e){
-      reactContext.setState({nowPlaying: $(e.target).attr('src')})
+      console.log('reactContext', reactContext.props.podcastEpisodes)
+      reactContext.setState({nowPlaying: reactContext.props.podcastEpisodes.episodes[$(e.target).parent().index() - 1]})
       console.log('presend', reactContext.state.nowPlaying)
       var audios = document.getElementsByTagName('audio');
         for(var i = 0, len = audios.length; i < len;i++){
@@ -36,26 +37,39 @@ class PodcastEpisodes extends React.Component {
     var collectionIds = [this.props.podcastEpisodes.collectionId];
 
     $.get('/search-rating', { collectionIds })
-        .done(response => {
-          if (response && Object.keys(response).length > 0) {
-            this.setState({
-              rating: Math.round(response[0].rating),
-              noofreviews: response[0].noofreviews
-            });
-          }
-        });
+      .done(response => {
+        if (response && Object.keys(response).length > 0) {
+          this.setState({
+            rating: Math.round(response[0].rating),
+            noofreviews: response[0].noofreviews
+          });
+        }
+      });
+
+    //$.get() request to update all song. sends states, updates states when done to audio player
   }
 
   displayRefreshOnReviewSubmit() {
     this.child.refresh();
   }
 
+  getTime(podcastIndex, time){
+    //console.log(podcastIndex, time)
+    //sends signal played
+    //$.get() // if return successful, update time on track playing
+  }
+
+  updateTime (podcastIndex, time){
+    //console.log(podcastIndex, time)
+/* sends signal to server to update song time*/
+  }
+
+
   render() {
 
     return (
       <div className='podcast-episodes'>
         <div className='podcast-description'>
-          {/*<h3>{props.podcastEpisodes.summary}</h3>*/}
           <img src={this.props.podcastEpisodes.image} height='200px' width='200px' />
           <h2>{this.props.podcastEpisodes.title}</h2>
           <p>{this.props.podcastEpisodes.description}</p>
@@ -73,7 +87,11 @@ class PodcastEpisodes extends React.Component {
                 src={episode.url}
                 controls={true}
                 preload="none"
-                onPause={()=>{console.log(this)}}
+                listenInterval={1000}
+                //onPause={(e)=>{this.updateTime($(e.target).parent().index(), e.target.currentTime)}}
+                onPlay={(e)=>{this.getTime($(e.target).parent().index(), e.target.currentTime)}}
+                //onListen={(e)=>{console.log('this is e', e)}}
+                //onListen={(e)=>{this.updateTime($(e.target).parent().index(), e.target.currentTime)}}
               />
 
             </div>

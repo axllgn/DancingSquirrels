@@ -58,7 +58,7 @@ class App extends React.Component {
   onSearch(query) {
     $.post('/search', { search: query })
       .done((results) => {
-        console.log('Search Query: ', query);
+        //console.log('Search Query: ', query);
         this.setState({
           podcasts: results
         });
@@ -67,10 +67,10 @@ class App extends React.Component {
   }
 
   onMenuClick(genreID) {
-    console.log('Menu clicked from client with ID: ', genreID);
+    //console.log('Menu clicked from client with ID: ', genreID);
      $.post('/menu', { menuItem: genreID })
       .done((results) => {
-        console.log(results);
+        //console.log(results);
         this.setState({
           podcasts: results
         });
@@ -110,12 +110,12 @@ class App extends React.Component {
     })
       .done((podcastEpisodes) => {
         // when done renderEpisodes is true AND episodes is set to the results
-        // console.log(podcastEpisodes[0]);
+        // //console.log(podcastEpisodes[0]);
         this.setState({
           podcastEpisodes: podcastEpisodes[0],
         });
-        console.log('podcastEpisodes: ', this.state.podcastEpisodes);
-        console.log('podcasts: ', this.state.podcasts);
+        //console.log('podcastEpisodes: ', this.state.podcastEpisodes);
+        //console.log('podcasts: ', this.state.podcasts);
         callback();
       });
   }

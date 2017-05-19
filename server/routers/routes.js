@@ -23,7 +23,11 @@ const router = express.Router();
 
 router.route('/logout')
   .get((req, res) => {
+<<<<<<< HEAD
     console.log('--------------------log out----------------:');
+=======
+    //console.log('--------------------log out----------------');
+>>>>>>> removed console.logs
     sessionHelpers.store.destroy(req.sessionID);
     req.session.destroy();
     res.redirect('/');
@@ -59,7 +63,7 @@ router.route('/favorite')
   .get((req, res) => {
     //console.log('testing cookie', req.query.username)
     verifySession(req.sessionID, function(dbUserName){
-      console.log('testing cookie ids', req.query.username, dbUserName)
+      //console.log('testing cookie ids', req.query.username, dbUserName)
       if(dbUserName === req.query.username){
         UserModel.fetch(req.query.username, (result) => {
           // console.log('favorite: ', result);
@@ -110,7 +114,7 @@ router.route('/signup')
 
 router.route('/search')
   .post((req, res) => {
-    console.log('------------Search Query-----------:', req.body.search);
+    //console.log('------------Search Query-----------:', req.body.search);
     let url = `https://itunes.apple.com/search?term=${req.body.search}&country=US&entity=podcast&media=podcast&limit=10`;
     utils.fetchCollections(url, (err, results) => {
       if (results) {
@@ -159,7 +163,7 @@ router.route('/search-rating')
 
 router.route('/addRating')
  .post((req, res) => {
-   console.log(req.sessionID);
+   //console.log(req.sessionID);
    UserModel.fetch(req.body.username, (result) => {
     var dataToInsert = {
       podcast_id: req.body.collectionId,
@@ -218,6 +222,17 @@ router.route('/getUser')
     }
   });
 
+router.route('played')
+  .get((req, res) => {
+    // if database fetch time has result, return result time to client
+    // if database fetch time does not have result, return 0 to client, add entry to server
+  })
+
+router.route('played')
+  .post((req, res) => {
+    // send update time to database
+  })
+
 router.route('/login')
   .get((req, res) => {
     res.status(200).sendFile(path.join(__dirname + '/../../client/index.html'));
@@ -226,7 +241,7 @@ router.route('/login')
 router.route('/*')
   .get((req, res) => {
     verifySession(req.sessionID, function(dbUserName){
-      console.log('testing cookie ids', req.url.substring(1), dbUserName, req.sessionID);
+      //console.log('testing cookie ids', req.url.substring(1), dbUserName, req.sessionID);
       if(dbUserName === req.url.substring(1)){
         res.status(200).sendFile(path.join(__dirname + '/../../client/index.html'));
       }
@@ -234,7 +249,7 @@ router.route('/*')
         res.redirect('/login');
       }
     })
-    console.log('*********** star route **********');
+    //console.log('*********** star route **********');
   })
 
 

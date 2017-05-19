@@ -29,7 +29,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = { open: false };
-    console.log("SEARCH PROPS", this.props)
+    //console.log("SEARCH PROPS", this.props)
     this.onSearch = this.onSearch.bind(this);
     
     this.handleToggle = this.handleToggle.bind(this);
@@ -199,7 +199,7 @@ class Search extends React.Component {
                        }}                       
                        onKeyPress={this.onSearch}/>
 
-          { console.log("(Search.jsx) this.props.loggedIn ", this.props.loggedIn )}
+
           { !this.props.loggedIn ?
             (<Link to='/login'>
               <FlatButton label="Login" style={{ color: 'white' }}/>
