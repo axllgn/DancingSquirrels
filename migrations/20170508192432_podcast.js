@@ -35,7 +35,7 @@ exports.up = function(knex, Promise) {
       table.integer('podcast_id');
       table.integer('time');
       table.timestamp('created_at').defaultTo(knex.fn.now());
-      table.timestamp('created_at').defaultTo(knex.fn.now());
+      table.timestamp('updated_at').defaultTo(knex.fn.now());
     }),
 
     knex.schema.createTableIfNotExists('sessions', (table) => {
