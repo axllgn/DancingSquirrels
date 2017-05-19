@@ -144,11 +144,15 @@ class Search extends React.Component {
             width={300}
             open={this.state.open}
             onRequestChange={(open) => this.setState({open})}
-            >
-            <MenuItem onTouchTap={this.handleClose}>Favorites</MenuItem>
-            <MenuItem onTouchTap={this.handleClose}>Unfinished</MenuItem>
-            <MenuItem onTouchTap={this.handleClose}>History</MenuItem>
-            <Divider/>
+          >
+            { this.props.loggedIn ?  
+             ( <div>
+             <MenuItem onTouchTap={this.handleClose}>Logout</MenuItem>
+              <MenuItem onTouchTap={this.handleClose}>Favorites</MenuItem>
+              <MenuItem onTouchTap={this.handleClose}>Unfinished</MenuItem>
+              <MenuItem onTouchTap={this.handleClose}>History</MenuItem>
+              <Divider/> </div> ) : null }
+
             <MenuItem onTouchTap={this.arts}>Arts</MenuItem>
             <MenuItem onTouchTap={this.comedy}>Comedy</MenuItem>
             <MenuItem onTouchTap={this.education}>Education</MenuItem>

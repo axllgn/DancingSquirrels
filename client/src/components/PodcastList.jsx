@@ -70,7 +70,8 @@ class PodcastList extends React.Component {
               return (<PodcastListEntry 
                         key={ itr }
                         podcast={podcast}
-                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}
+                        loggedIn={ this.props.loggedIn }  
                       />)
               
             })

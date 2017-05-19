@@ -82,10 +82,21 @@ class PodcastEpisodes extends React.Component {
             </div>
           );
         })}
+
         <h3>User Reviews</h3>
-        <WriteReview collectionId={this.props.podcastEpisodes.collectionId} refreshReview={this.displayRefreshOnReviewSubmit.bind(this)}/>
-        <DisplayReview collectionId={this.props.podcastEpisodes.collectionId} ref={instance => { this.child = instance; }} />
+
+        <WriteReview 
+          collectionId={this.props.podcastEpisodes.collectionId} 
+          refreshReview={this.displayRefreshOnReviewSubmit.bind(this)}
+        />
+
+        <DisplayReview 
+          collectionId={this.props.podcastEpisodes.collectionId} 
+          ref={instance => { this.child = instance; }} 
+        />
+        
       </div>
+
     );
   }
 }
