@@ -15,7 +15,7 @@ class PodcastList extends React.Component {
     let hrefArr = window.location.href.split('/');
     this.username = hrefArr[hrefArr.length - 1];
     this.onClickPodcast = this.onClickPodcast.bind(this);
-    console.log("LIST PROPS", props)
+    // console.log("LIST PROPS", props)
   }
 
   onFavorite(podcast) {
@@ -79,7 +79,7 @@ class PodcastList extends React.Component {
           { this.props.podcasts.map( (podcast, itr) => {
             { console.log("POD", podcast) }
             return ( 
-              <div className="tileContainer" onClick={ () => this.onClickPodcast(podcast) }>
+              <div key={itr} className="tileContainer" onClick={ () => this.onClickPodcast(podcast) }>
 
               { this.props.loggedIn ? 
                     <IconButton className="favBtn"
@@ -87,7 +87,6 @@ class PodcastList extends React.Component {
                               <StarBorder color="#333" /> 
                       </IconButton> : null }
 
-                      
                 <GridTile
                   key={podcast.artworkUrl100}
                   cols={4}
