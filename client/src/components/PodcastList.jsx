@@ -13,6 +13,7 @@ class PodcastList extends React.Component {
 
   constructor(props) {
     super(props);
+
     let hrefArr = window.location.href.split('/');
     this.username = hrefArr[hrefArr.length - 1];
     this.onClickPodcast = this.onClickPodcast.bind(this);
@@ -52,7 +53,7 @@ class PodcastList extends React.Component {
   render() {
 
     return (
-
+      <div>
       <div className="podRow">
 
         <h3 className='podcast-results'>
@@ -79,6 +80,359 @@ class PodcastList extends React.Component {
 
           </div>
         </div>
+      </div>
+      <div className="podRow">
+
+        <h3 className='podcast-results'>Arts</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.arts.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+      <div className="podRow">
+
+        <h3 className='podcast-results'>Comedy</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.comedy.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+      <div className="podRow">
+
+        <h3 className='podcast-results'>Education</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.education.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+      <div className="podRow">
+
+        <h3 className='podcast-results'>Kids & Family</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.kidsFamily.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+      <div className="podRow">
+
+        <h3 className='podcast-results'>Health</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.health.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+      <div className="podRow">
+
+        <h3 className='podcast-results'>TV & Film</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.tvFilm.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+      <div className="podRow">
+
+        <h3 className='podcast-results'>Music</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.music.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+      <div className="podRow">
+
+        <h3 className='podcast-results'>News & Politics</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.newsPolitics.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+      <div className="podRow">
+
+        <h3 className='podcast-results'>Religion & Spirituality</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.religionSpirituality.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+      <div className="podRow">
+
+        <h3 className='podcast-results'>Science & Medicine</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.scienceMedicine.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+      <div className="podRow">
+
+        <h3 className='podcast-results'>Sports & Recreation</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.sportsRecreation.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+      <div className="podRow">
+
+        <h3 className='podcast-results'>Technology</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.technology.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+      <div className="podRow">
+
+        <h3 className='podcast-results'>Business</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.business.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+      <div className="podRow">
+
+        <h3 className='podcast-results'>Games & Hobbies</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.gamesHobbies.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+      <div className="podRow">
+
+        <h3 className='podcast-results'>Society & Culture</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.societyCulture.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
+       <div className="podRow">
+
+        <h3 className='podcast-results'>Government & Organizations</h3>
+
+        <div className="gridListContainer" >
+        
+          <div className="gridListStructure">
+
+          { this.props.governmentOrganizations.map( (podcast, itr) => {
+
+              return (<PodcastListEntry 
+                        key={ itr }
+                        podcast={podcast}
+                        onClickPodcast={ () => this.onClickPodcast(podcast)}  
+                      />)
+              
+            })
+          }
+
+          </div>
+        </div>
+      </div>
       </div>
     )
   }
