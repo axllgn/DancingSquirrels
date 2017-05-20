@@ -24,11 +24,6 @@ const router = express.Router();
 
 router.route('/logout')
   .get((req, res) => {
-<<<<<<< HEAD
-    console.log('--------------------log out----------------:');
-=======
-    //console.log('--------------------log out----------------');
->>>>>>> removed console.logs
     sessionHelpers.store.destroy(req.sessionID);
     req.session.destroy();
     res.redirect('/');
@@ -196,6 +191,7 @@ router.route('/get-reviews')
 router.route('/post-review')
  .post((req, res) => {
    UserModel.fetch(req.body.username, (result) => {
+    console.log('post review result', result)
     var dataToInsert = {
       podcast_id: req.body.collectionId,
        summary: req.body.summary,
@@ -233,7 +229,9 @@ router.route('/played')
 router.route('/played')
     // send update time to database
  .post((req, res) => {
+  console.log('req.body.username', req.body.username)
    UserModel.fetch(req.body.username, (result) => {
+    //console.log('played username result', result)
     var dataToInsert = {
        user_id: result.id,
        episode_id: req.body.episode_id,
