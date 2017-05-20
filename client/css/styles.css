@@ -1,102 +1,18 @@
 @media screen, handheld and (max-device-width: 420px) {
   
-  .toolbar {
-     background-color: #F50057; 
-     height: 40px;
-  }
-
-  .main-container {
-    
-    padding: 10px 20px;
-    border: 1px solid black;
-  }
-
-  .tileImg{
-    /*transform: translateY(0) translateX(0);*/
-    /*border-radius: 6px 0 0 6px;*/
-    /*translate: translateY(-40px) !important;*/
-    width: 100px;
-    margin-right: 5px;
-    /*border: 1px solid black;*/
-    position: relative !important;
-  }
-
-  .podcast-results {
-    color: #483D8B;
-    font-family: helvetica;
-    font-weight: bolder;
-    font-size: 200%;
-    margin-bottom: 25px;
-    text-align: center;
-  }
-
-  /*.gridListContainer {
-    display: 'flex';
-    flex-wrap: 'wrap';
-    justify-content: 'space-around';
-    border: 1px solid red;
-    width: 90%;
-    margin: 0 auto;
-  }*/
-
-  .favBtn{
-    /*border: 1px solid blue;*/
-    z-index: 500;
-    /*transform: translateY(-100px);*/
-    /*float: right;*/
-/*    position: absolute;
-    top: 0;
-    right: 0;*/
-    position: inherit !important;
-    display: block;
-  }
-
-  .tile {
+  body {
+    /*position: relative;*/
     width: 100%;
-    /*float: left;*/
-    /*transform: translateY(-40px;);*/
   }
   
-  a, a:hover, a:focus, a:active { 
-    text-decoration: none; 
-    outline: none; 
-    border: none; }
-
-  .tileContainer {
-    /*border: 2px solid red;*/
-    width: 250px;
-    height: 250px;
-    /*border: 1px solid #ccc;*/
-    /*border-radius: 6px;*/
-    /*box-shadow: 1px 1px 1px #eee;*/
-  }
-
-  .tileInfo {
-    display: none;
-    float: left;
-    /*margin: auto 0 auto 10px;*/
-    width: auto;
-    margin: 10px 0 0 10px;
-    /*border: 1px solid red;*/
-    max-width: 130px;
-  }
-
-
-
-}
-
-@media screen and ( min-device-width: 1024px ){
-
-
-  body {
-    /*max-width: 1200px;*/
-    /*margin: 80px auto auto auto;*/
-    position: relative;
-    width: 100%;
+  .toolbarBtn {
+    transform: scale(2);
   }
 
   .toolbar {
-     background-color: #F50057; 
+    height: 80px;
+     /*background-color: #F50057; */
+     background-color: #0c0c0c;
   }
 
   .main-container {
@@ -110,7 +26,6 @@
   }
 
   .podcast-results {
-    /*border: 1px solid orange;*/
     color: #333;
     font-family: helvetica;
     font-weight: bolder;
@@ -120,7 +35,108 @@
   }
 
   .gridListContainer {
-    /*border: 1px solid blue;*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .gridListStructure{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .tileContainer {
+    min-width: 200px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .tile {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .favBtn{
+    border: 1px solid blue;
+    float: right;
+    z-index: 0 !important;
+  }
+
+  .tileImg{
+    width: 100%;
+  }
+
+  .tileInfo {
+
+    text-align: left;
+    display: none;
+    width: 100%;
+  }
+
+  .podTitle{
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 !important;
+  }
+
+  .podGenre{
+    font-size: 10px;
+    color: #999;
+    margin: 0 auto;
+  }
+
+  .whiteIcon{
+    color: white !important;
+  }
+
+
+
+}
+
+@media screen and ( min-device-width: 1024px ){
+
+
+  body {
+    position: relative;
+    width: 100%;
+  }
+
+  .toolbarBtn {
+    transform: scale(1);
+  }
+
+  .toolbar {
+      height: 80px;
+     /*background-color: #F50057; */
+     background-color: #0c0c0c !important;
+  }
+
+  .main-container {
+    
+    padding: 30px 0;
+    border: 1px solid black;
+    background-color: #0c0c0c;
+  }
+
+  .podRow {
+    /*border: 1px solid purple;*/
+  }
+
+  .podcast-results {
+    color: white;
+    font-family: helvetica;
+    font-weight: normal !important;
+    margin: 15px 0 28px 25px !important;
+    text-align: left;
+    font-size: 18px !important;
+    letter-spacing: 1px;
+  }
+
+  .gridListContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -138,8 +154,6 @@
     min-width: 180px;
     width: 100%;
     height: 100%;
-    /*border: 1px solid #ccc;*/
-    /*margin: 5px;*/
   }
   
   .tile {
@@ -151,7 +165,7 @@
   .favBtn{
     border: 1px solid blue;
     float: right;
-    
+    z-index: 0 !important;
   }
 
   .tileImg{
@@ -159,16 +173,14 @@
   }
 
   .tileInfo {
-    /*border: 1px solid red;*/
     text-align: left;
     display: block;
-    /*margin: 0 auto;*/
     width: 100%;
-    /*height: 100%;*/
+    padding: 3px;
   }
 
   .podTitle{
-    /*text-align: center;*/
+    color: #ccc;
     font-size: 12px;
     font-weight: bold;
     margin: 0 !important;
@@ -178,8 +190,6 @@
     font-size: 10px;
     color: #999;
     margin: 0 auto;
-    /*position: relative;
-    bottom: 0;*/
   }
 
   .whiteIcon{
