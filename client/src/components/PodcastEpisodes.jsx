@@ -74,14 +74,15 @@ class PodcastEpisodes extends React.Component {
     $.get('/played', options)
     .done((data, state)=>{
       console.log('setting time if less than 0', data.time, reactContext.state.nowPlaying.currentTime)
-      if(reactContext.state.nowPlaying.currentTime < 1){
-
+      if(reactContext.state.nowPlaying.currentTime === 0){
         reactContext.state.nowPlaying.currentTime = data.time;
       }
     })
   }
 
   updateTime (time){
+
+
     var timeInSeconds = Math.floor(this.state.nowPlaying.currentTime)
     var options = {
       username: this.state.loggedIn,
@@ -89,7 +90,10 @@ class PodcastEpisodes extends React.Component {
       time: timeInSeconds
     }
     //console.log(options)
-    $.post('/played', options)
+    if(timeInSeconds){
+      $.post('/played', options)
+      
+    }
   }
 
 
