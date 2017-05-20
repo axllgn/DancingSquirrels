@@ -31,9 +31,9 @@ class PodcastEpisodes extends React.Component {
     });
 
     document.addEventListener('play', function(e){
-      console.log('reactContext', reactContext.props.podcastEpisodes)
+      //console.log('reactContext', reactContext.props.podcastEpisodes)
       reactContext.setState({nowPlaying: e.target});
-      console.log('presend', reactContext.state.nowPlaying)
+      //console.log('presend', reactContext.state.nowPlaying)
       var audios = document.getElementsByTagName('audio');
         for(var i = 0, len = audios.length; i < len;i++){
             if(audios[i] != e.target){
@@ -64,12 +64,20 @@ class PodcastEpisodes extends React.Component {
     this.child.refresh();
   }
 
-  getTime(){
-    //console.log(podcastIndex, time)
-    //sends signal played
-    //$.get() // if return successful, update time on track playing
-    $.get('/played', {
+  getTime(e){
+    var reactContext = this;
+    console.log(e)
+    var options = {
+      username: this.state.loggedIn,
+      episode_id: $(this.state.nowPlaying).attr('src')
+    }
+    $.get('/played', options)
+    .done((data, state)=>{
+      console.log('setting time if less than 0', data.time, reactContext.state.nowPlaying.currentTime)
+      if(reactContext.state.nowPlaying.currentTime < 1){
 
+        reactContext.state.nowPlaying.currentTime = data.time;
+      }
     })
   }
 
@@ -80,7 +88,7 @@ class PodcastEpisodes extends React.Component {
       episode_id: $(this.state.nowPlaying).attr('src'),
       time: timeInSeconds
     }
-    console.log(options)
+    //console.log(options)
     $.post('/played', options)
   }
 
@@ -109,7 +117,7 @@ class PodcastEpisodes extends React.Component {
                 preload="none"
                 listenInterval={1000}
                 onPause={(e)=>{this.updateTime(e.target.currentTime)}}
-                onPlay={(e)=>{this.getTime()}}
+                onPlay={(e)=>{this.getTime(e)}}
                 //onPlay={(e)=>{this.getTime($(e.target).parent().index(), e.target.currentTime)}}
                 onListen={(e)=>{this.updateTime(e)}}
               />

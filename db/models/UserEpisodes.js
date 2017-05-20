@@ -9,11 +9,11 @@ const UserEpisodes = bookshelf.Model.extend({
 const insertTime = (options, cb) => {
   fetchTime(options, (result)=>{
     if(result){
-      console.log(options)
+      //console.log(typeof result, result)
       UserEpisodes
         .forge()
         //.where({user_id: options.user_id, episode_id: options.episode_id})
-        .where('user_id', options.user_id)
+        .where({user_id: options.user_id, episode_id: options.episode_id})
         //.fetch()
         .save({time: options.time}, {patch: true})
         .then((data)=>{
