@@ -29,6 +29,22 @@ class App extends React.Component {
     this.state = {
       currentPodcastView: 'Top 10 Podcasts!',
       podcasts: [],
+      categories: ['arts', 
+                   'comedy',  
+                   'education',  
+                   'kidsFamily', 
+                   'health', 
+                   'tvFilm',  
+                   'music',  
+                   'newsPolitics', 
+                   'religionSpirituality', 
+                   'scienceMedicine', 
+                   'sportsRecreation', 
+                   'technology', 
+                   'business', 
+                   'gamesHobbies', 
+                   'societyCulture', 
+                   'governmentOrganizations'],
       arts: [],
       comedy: [],
       education: [],
@@ -48,23 +64,6 @@ class App extends React.Component {
       podcastEpisodes: {},
       loggedIn: ''
     };
-
-    // this.categories = [['arts', 1301], 
-    //                    ['comedy', 1303], 
-    //                    ['education', 1304], 
-    //                    ['kidsFamily',1305], 
-    //                    ['health',1307], 
-    //                    ['tvFilm', 1309], 
-    //                    ['music', 1310], 
-    //                    ['newsPolitics', 1311],
-    //                    ['religionSpirituality', 1314],
-    //                    ['scienceMedicine', 1315],
-    //                    ['sportsRecreation', 1316],
-    //                    ['technology', 1318],
-    //                    ['business', 1321],
-    //                    ['gamesHobbies', 1323],
-    //                    ['societyCulture', 1324],
-    //                    ['governmentOrganizations', 1325]]
 
     this.currentPodcastView = this.currentPodcastView.bind(this);
     this.getHomePage = this.getHomePage.bind(this);
@@ -112,27 +111,27 @@ class App extends React.Component {
   }
 
   updateRatings() {
-    // var collectionIds = this.state.podcasts.map((podcast) => {
-    //   return podcast.collectionId;
-    // });
-    // $.get('/search-rating', { collectionIds })
-    //     .done(rating => {
-    //       if (rating && Object.keys(rating).length > 0) {
-    //         var newPodcasts = this.state.podcasts;
-    //         rating.forEach(function(val) {
-    //           for ( var item of newPodcasts ) {
-    //             if (item.collectionId === val.podcast_id ) {
-    //               item.rating = Math.round(val.rating);
-    //               item.noOfReviews = val.noofreviews;
-    //               break;
-    //             }
-    //           }
-    //         });
-    //         this.setState({
-    //           podcasts: newPodcasts
-    //         });
-    //       }
-    //     });
+    var collectionIds = this.state.podcasts.map((podcast) => {
+      return podcast.collectionId;
+    });
+    $.get('/search-rating', { collectionIds })
+        .done(rating => {
+          if (rating && Object.keys(rating).length > 0) {
+            var newPodcasts = this.state.podcasts;
+            rating.forEach(function(val) {
+              for ( var item of newPodcasts ) {
+                if (item.collectionId === val.podcast_id ) {
+                  item.rating = Math.round(val.rating);
+                  item.noOfReviews = val.noofreviews;
+                  break;
+                }
+              }
+            });
+            this.setState({
+              podcasts: newPodcasts
+            });
+          }
+        });
   }
 
   onClickPodcast(feedUrl, collectionId, callback) {
@@ -340,6 +339,7 @@ class App extends React.Component {
                  component={() => (<PodcastMain 
                                       onSearch={this.onSearch}
                                       podcasts={this.state.podcasts}
+                                      categories={this.state.categories}
                                       arts={this.state.arts}
                                       comedy={this.state.comedy}
                                       education={this.state.education}
@@ -377,6 +377,7 @@ class App extends React.Component {
                  component={() => (<PodcastMain 
                                       onSearch={this.onSearch}
                                       podcasts={this.state.podcasts}
+                                      categories={this.state.categories}
                                       arts={this.state.arts}
                                       comedy={this.state.comedy}
                                       education={this.state.education}
@@ -404,6 +405,7 @@ class App extends React.Component {
                                 loggedIn={this.state.loggedIn}
                                 onSearch={this.onSearch}
                                 podcasts={this.state.podcasts}
+                                categories={this.state.categories}
                                 arts={this.state.arts}
                                 comedy={this.state.comedy}
                                 education={this.state.education}

@@ -10,6 +10,7 @@ const PodcastMain = (props) => {
       
       <PodcastList
         podcasts={ props.podcasts }
+        categories={props.categories}
         arts={props.arts}
         comedy={props.comedy}
         education={props.education}
