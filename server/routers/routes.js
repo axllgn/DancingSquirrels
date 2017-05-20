@@ -383,6 +383,7 @@ router.route('/get-reviews')
 router.route('/post-review')
  .post((req, res) => {
    UserModel.fetch(req.body.username, (result) => {
+    console.log('post review result', result)
     var dataToInsert = {
       podcast_id: req.body.collectionId,
        summary: req.body.summary,
@@ -420,7 +421,9 @@ router.route('/played')
 router.route('/played')
     // send update time to database
  .post((req, res) => {
+  console.log('req.body.username', req.body.username)
    UserModel.fetch(req.body.username, (result) => {
+    //console.log('played username result', result)
     var dataToInsert = {
        user_id: result.id,
        episode_id: req.body.episode_id,
