@@ -69,9 +69,9 @@ class Search extends React.Component {
       }, 0);
     }
     else {
-      setTimeout(() => {
+      // setTimeout(() => {
         this.props.currentPodcastView('Top 10 Podcasts!');
-      }, 0);
+      // }, 0);
     }
   }
 
@@ -217,8 +217,8 @@ class Search extends React.Component {
             </Link>) 
             :
             (<Link to={'/' + this.props.loggedIn}>
+              Hi, {this.props.loggedIn}
               <AccountBox color="white"/>
-              Hi! { !!this.props.loggedIn}
             </Link>)}
 
           </ToolbarGroup>

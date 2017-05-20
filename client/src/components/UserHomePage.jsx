@@ -41,7 +41,6 @@ class UserHomePage extends React.Component {
   }
 
   getFavorites() {
-    console.log(this.username);
     $.get('/favorite', {
       username: this.username
     })
