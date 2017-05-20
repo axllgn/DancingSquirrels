@@ -29,10 +29,10 @@ class UserHomePage extends React.Component {
       if ( !context.props.loggedIn ){
         console.log("will update login");
         context.updateLoggedIn();
+        context.getFavorites();
       }
     },100)
       
-    context.getFavorites();
   }
 
   updateLoggedIn(){

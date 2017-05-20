@@ -199,7 +199,7 @@ PodcastList.propTypes = {
   podcasts: PropTypes.array.isRequired,
   onClickPodcast: PropTypes.func.isRequired,
   getFavPodcasts: PropTypes.func,
-  loggedIn: PropTypes.bool
+  loggedIn: PropTypes.string
 };
 
 PodcastList.contextTypes = {
