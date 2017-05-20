@@ -181,11 +181,14 @@ class Search extends React.Component {
                 onClick={() => 
                 {  this.props.getHomePage(); this.props.currentPodcastView('Top 10 Podcasts!');}}>
             <ToolbarTitle 
-              className="toolbarBtn"
+              className="toolBarTitle toolbarBtn"
               text="NETPODS" 
-              style={{ color: 'white', letterSpacing: '2px' }} />
+              style={{  color: 'white', 
+                        letterSpacing: '2px', 
+                        textDecoration: 'none !important'
+                      }} />
           </Link>
-
+          <img src="../../as_white.png" className="asLogo" />
         </ToolbarGroup>
 
         <ToolbarGroup>
@@ -197,7 +200,7 @@ class Search extends React.Component {
 
           */}
 
-            <TextField className="toolbarBtn"
+            <TextField id="searchField"
                        hintText="Search"
                        ref={(input) => {
                           if (input) {
@@ -206,7 +209,6 @@ class Search extends React.Component {
                        }}                       
                        onKeyPress={this.onSearch}/>
 
-          { console.log("(Search.jsx) this.props.loggedIn ", this.props.loggedIn )}
           { !this.props.loggedIn ?
             (<Link to='/login'>
               <FlatButton className="toolbarBtn"

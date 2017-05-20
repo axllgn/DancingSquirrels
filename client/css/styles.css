@@ -1,5 +1,9 @@
 @media screen, handheld and (max-device-width: 420px) {
   
+  html {
+    background-color: #0c0c0c;
+  }
+
   body {
     /*position: relative;*/
     width: 100%;
@@ -16,7 +20,7 @@
   }
 
   .main-container {
-    
+    background-color: #0c0c0c
     padding: 40px 0;
     border: 1px solid black;
   }
@@ -99,10 +103,25 @@
 
 @media screen and ( min-device-width: 1024px ){
 
+  html {
+    background-color: #0c0c0c;
+  }
 
   body {
     position: relative;
     width: 100%;
+  }
+
+  .asLogo {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    z-index: 1000;
+    transform: translateX(-10px)
+  }
+
+  #podcast-main{
+    background-color: #0c0c0c;
   }
 
   .toolbarBtn {
@@ -114,12 +133,23 @@
      /*background-color: #F50057; */
      background-color: #0c0c0c !important;
   }
+  
+  #searchField {
+    color: white !important;
+    font-weight: 200 !important;
+    letter-spacing: 1px;
+
+  }
 
   .main-container {
     
     padding: 30px 0;
     border: 1px solid black;
     background-color: #0c0c0c;
+  }
+  
+  .toolBarTitle, .toolBarTitle:hover, .toolBarTitle:active, .toolBarTitle:focus {
+    text-decoration: none !important;
   }
 
   .podRow {
@@ -501,7 +531,7 @@
     letter-spacing: 1px;
   }
 
-  .login {
+  /*.login {
     font-family: monospace;
     font: bold 11px;
     background-color: crimson;
@@ -516,15 +546,31 @@
     border-radius: 5px;
     text-align: center;
     margin-top: 10px;
+  }*/
+
+  .loginContainer{
+    /*outline: 1px solid green;*/
+    height: 900px;
+    display: block;
   }
 
   .loginForms {
-    margin: auto;
-    width: 500px;
-  }
+    color: white;
+    font-weight: 200 !important;
+    letter-spacing: 1px;
+    padding: 15%;
+    width: 100%;
+    /*border: 1px solid yellow;*/
+    text-align: center;
+    height: 100%;
+}
+
+.loginForms input{
+  color: #333;
+}
 
   .loginSubmit {
-    background-color: crimson;
+    /*background-color: crimson;*/
     font: bold;
     color: #ffffff;
     padding-top: 2px;
