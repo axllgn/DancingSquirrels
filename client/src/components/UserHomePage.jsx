@@ -23,6 +23,7 @@ class UserHomePage extends React.Component {
   }
 
   componentDidMount(){
+    
     // var context = this;
     // setTimeout(function(){
     //   console.log("(UserHomePage) context.props.loggedIn: ", context.props.loggedIn)
@@ -30,7 +31,8 @@ class UserHomePage extends React.Component {
     //     console.log("will update login");
     //     context.updateLoggedIn();
     //   }
-    // },100)      
+    // },100);
+
   }
 
   updateLoggedIn(){

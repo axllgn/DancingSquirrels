@@ -218,7 +218,7 @@ class Search extends React.Component {
             :
             (<Link to={'/' + this.props.loggedIn}>
               <AccountBox color="white"/>
-              Hi! {this.props.loggedIn}
+              Hi! { !!this.props.loggedIn}
             </Link>)}
 
           </ToolbarGroup>

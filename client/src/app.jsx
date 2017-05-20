@@ -329,7 +329,7 @@ class App extends React.Component {
                 logoutUser={this.logoutUser}
                 currentPodcastView={this.currentPodcastView}
                 onMenuClick={this.onMenuClick}
-                loggedIn = {!!this.state.loggedIn} />
+                loggedIn = { this.state.loggedIn} />
         <Switch>
           <Route name="root"
                  exact path="/"
