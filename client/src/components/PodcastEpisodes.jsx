@@ -65,22 +65,31 @@ class PodcastEpisodes extends React.Component {
   }
 
   getTime(){
+    var reactContext = this;
     //console.log(podcastIndex, time)
     //sends signal played
     //$.get() // if return successful, update time on track playing
-    $.get('/played', {
-
-    })
+    var options = {
+      username: this.state.loggedIn,
+      episode_id: $(this.state.nowPlaying).attr('src')
+    }
+    $.get('/played', options).done(function(data, state){
+        console.log('gettime', data, state)
+        reactContext.state.nowPlaying.currentTime = Number(data);
+        if(reactContext.state.nowPlaying.currentTime === Math.floor(reactContext.state.nowPlaying.duration)){
+          reactContext.state.nowPlaying.currentTime = 0
+        }
+      })
   }
 
   updateTime (time){
+    console.log('time updated', time)
     var timeInSeconds = Math.floor(this.state.nowPlaying.currentTime)
     var options = {
       username: this.state.loggedIn,
       episode_id: $(this.state.nowPlaying).attr('src'),
       time: timeInSeconds
     }
-    console.log(options)
     $.post('/played', options)
   }
 
@@ -107,11 +116,23 @@ class PodcastEpisodes extends React.Component {
                 src={episode.url}
                 controls={true}
                 preload="none"
-                listenInterval={1000}
+                listenInterval={5000}
+                onListen={
+                  (e)=>{
+                  setTimeout((e)=>{
+                    this.updateTime(e).bind(this)
+                  }, 0)
+                }
+                }
+
+                  
                 onPause={(e)=>{this.updateTime(e.target.currentTime)}}
+                // onSeeked={(e)=>{
+                //   this.state.nowPlaying.currentTime = e
+                //   this.updateTime(e)
+                // }}
+                onEnded={(e)=>{this.updateTime(0)}}
                 onPlay={(e)=>{this.getTime()}}
-                //onPlay={(e)=>{this.getTime($(e.target).parent().index(), e.target.currentTime)}}
-                onListen={(e)=>{this.updateTime(e)}}
               />
 
             </div>

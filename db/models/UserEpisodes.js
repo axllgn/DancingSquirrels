@@ -7,20 +7,19 @@ const UserEpisodes = bookshelf.Model.extend({
 });
 
 const insertTime = (options, cb) => {
+
   fetchTime(options, (result)=>{
+    //console.log(result)
     if(result){
-      console.log(options)
+      console.log(typeof result)
       UserEpisodes
         .forge()
-        //.where({user_id: options.user_id, episode_id: options.episode_id})
-        .where('user_id', options.user_id)
-        //.fetch()
+        .where({user_id: options.user_id, episode_id: options.episode_id})
         .save({time: options.time}, {patch: true})
         .then((data)=>{
           return cb(data)
         })
         .catch((err)=>{
-          console.log(err)
         })
     } else {
       UserEpisodes
@@ -38,15 +37,17 @@ const insertTime = (options, cb) => {
 };
 
 const fetchTime = (options, cb) => {
+  console.log('fetchTime', options.user_id, options.episode_id)
   UserEpisodes
   .where({user_id: options.user_id, episode_id: options.episode_id})
   .orderBy('created_at', 'DESC')
   .fetch()
   .then((data)=>{
-    cb(data)
+    //console.log(JSON.parse(JSON.stringify(data)).time)
+    cb(JSON.parse(JSON.stringify(data)).time)
   })
   .catch((err) =>{
-    cb(err)
+    cb(null)
   })
     // .forge()
     // .orderBy('created_at', 'DESC')
@@ -62,7 +63,7 @@ const fetchTime = (options, cb) => {
 };
 
 //fetchTime({user_id:2, episode_id:'https://dts.podtrac.com/redirect.mp3/rss.art19.com/episodes/3afeec89-2f18-4cab-94d5-6947049365bf.mp3'}, ()=>{});
-insertTime({user_id:1, episode_id:'https://dts.podtrac.com/redirect.mp3/rss.art19.com/episodes/3afeec89-2f18-4cab-94d5-6947049365bf.mp3', time:125}, ()=>{})
+//insertTime({user_id:5, episode_id:'https://dts.podtrac.com/redirect.mp3/rss.art19.com/episodes/3afeec89-2f18-4cab-94d5-6947049365bf.mp3', time:125}, ()=>{})
 
 
 const lastPlayed = () => {

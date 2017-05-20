@@ -199,8 +199,7 @@ class PodcastList extends React.Component {
 PodcastList.propTypes = {
   podcasts: PropTypes.array.isRequired,
   onClickPodcast: PropTypes.func.isRequired,
-  getFavPodcasts: PropTypes.func,
-  loggedIn: PropTypes.bool
+  getFavPodcasts: PropTypes.func
 };
 
 PodcastList.contextTypes = {
