@@ -162,8 +162,6 @@ class App extends React.Component {
         this.updateRatings();
       });
 
-    // this.categories.forEach((type) => {
-
       $.post('/arts', { genreID: 1301 })
         .done((results) => {
           this.setState({
@@ -304,7 +302,6 @@ class App extends React.Component {
           this.updateRatings();
       });
       
-    // })
   }
 
   logoutUser() {
