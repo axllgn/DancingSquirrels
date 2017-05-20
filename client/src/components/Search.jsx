@@ -133,14 +133,15 @@ class Search extends React.Component {
 
       <MUI>
 
-      <Toolbar className="toolbar"  style={{ backgroundColor: '#F50057' }}>
+      <Toolbar className="toolbar">
         <ToolbarGroup>
           <IconButton touch={true}>
             <MenuIcon 
               onTouchTap ={this.handleToggle} 
-              className="whiteIcon"/>
+              className="toolbarBtn whiteIcon"/>
 
           <Drawer
+            className='drawer'
             docked={false}
             width={300}
             open={this.state.open}
@@ -176,13 +177,18 @@ class Search extends React.Component {
           </Drawer>
           </IconButton>
 
-          <Link to='/' onClick={() => 
+          <Link to='/' 
+                onClick={() => 
                 {  this.props.getHomePage(); this.props.currentPodcastView('Top 10 Podcasts!');}}>
             <ToolbarTitle 
-            text="NETPODS" 
-            style={{ color: 'white', letterSpacing: '2px' }} />
+              className="toolBarTitle toolbarBtn"
+              text="NETPODS" 
+              style={{  color: 'white', 
+                        letterSpacing: '2px', 
+                        textDecoration: 'none !important'
+                      }} />
           </Link>
-
+          <img src="../../as_white.png" className="asLogo" />
         </ToolbarGroup>
 
         <ToolbarGroup>
@@ -194,7 +200,8 @@ class Search extends React.Component {
 
           */}
 
-            <TextField hintText="Search"
+            <TextField id="searchField"
+                       hintText="Search"
                        ref={(input) => {
                           if (input) {
                             this._query = input.input.value; 
@@ -202,16 +209,18 @@ class Search extends React.Component {
                        }}                       
                        onKeyPress={this.onSearch}/>
 
-          { console.log("(Search.jsx) this.props.loggedIn ", this.props.loggedIn )}
           { !this.props.loggedIn ?
             (<Link to='/login'>
-              <FlatButton label="Login" style={{ color: 'white' }}/>
+              <FlatButton className="toolbarBtn"
+                          label="Login" 
+                          style={{ color: 'white' }}/>
             </Link>) 
             :
             (<Link to={'/' + this.props.loggedIn}>
               <AccountBox color="white"/>
-              Hi! {this.props.loggedIn}
+              Hi! { !!this.props.loggedIn}
             </Link>)}
+
           </ToolbarGroup>
         </Toolbar>
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import $ from 'jquery';
 import PropTypes from 'prop-types';
+import MUI from 'material-ui/styles/MuiThemeProvider';
+import FlatButton from 'material-ui/FlatButton';
 
 class LocalLogin extends React.Component {
   constructor(props) {
@@ -55,7 +57,13 @@ class LocalLogin extends React.Component {
             value={this.state.password} 
             onChange={this.localLoginPasswordChange} />
           <br></br>
-          <input className="loginSubmit" type="submit" value="Submit" />
+          <MUI>
+            <FlatButton className="toolbarBtn"
+                        label="Submit" 
+                        type="submit"
+                        style={{ color: 'white' }}/>
+
+          </MUI>
         </form>
       </div>
     )

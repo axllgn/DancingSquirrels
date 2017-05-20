@@ -329,7 +329,7 @@ class App extends React.Component {
                 logoutUser={this.logoutUser}
                 currentPodcastView={this.currentPodcastView}
                 onMenuClick={this.onMenuClick}
-                loggedIn = {this.state.loggedIn} />
+                loggedIn = { this.state.loggedIn} />
         <Switch>
           <Route name="root"
                  exact path="/"
@@ -365,6 +365,7 @@ class App extends React.Component {
                      <LocalLogin/>
                    )
                  )}/>*/}
+
 
           <Route path="/loginLocal" 
                  component={LocalLogin} />
@@ -412,12 +413,12 @@ class App extends React.Component {
                                       onClickPodcast={this.onClickPodcast}
                                       currentPodcastView={this.state.currentPodcastView}
                                       onMenuClick={this.onMenuClick} 
-                                      loggedIn={this.state.loggedIn} /> )} />
+                                      loggedIn={!!this.state.loggedIn} /> )} />
           <Route
             path="/:username"
             component={() => (<UserHomePage
                                 updateLoggedIn={ this.updateLoggedIn }
-                                loggedIn={this.state.loggedIn}
+                                loggedIn={ !!this.state.loggedIn }
                                 onSearch={this.onSearch}
                                 podcasts={this.state.podcasts}
                                 categories={this.state.categories}
