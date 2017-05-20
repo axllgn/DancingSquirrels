@@ -17,7 +17,7 @@ class PodcastListEntry extends React.Component {
     // let hashArr = window.location.hash.split('/');
     // this.username = hashArr[hashArr.length - 1];
 
-    console.log("PODCAST",this.props)
+    // console.log("PODCAST",this.props)
   }
 
   onFavorite() {
@@ -52,7 +52,7 @@ class PodcastListEntry extends React.Component {
                         onClick={ () => this.onClickPodcast(this.props.podcast) }
                         key={this.props.podcast.artworkUrl600} >
                     
-                    { console.log("IS LOGGED IN",this.props.loggedIn)}
+                    {/*{ console.log("IS LOGGED IN",this.props.loggedIn)}*/}
 
                     <img className="tileImg" 
                          src={this.props.podcast.artworkUrl600} />

@@ -357,23 +357,29 @@ class App extends React.Component {
                                       currentPodcastView={this.state.currentPodcastView}
                                       onMenuClick={this.onMenuClick}
                                       loggedIn={this.state.loggedIn} />)} />
-          <Route path="/loginLocal" 
+          {/*<Route path="/loginLocal" 
                  render={() => (
                    this.state.loggedIn ? (
                      <Redirect to={"/" + this.state.loggedIn} />
                    ) : (
                      <LocalLogin/>
                    )
-                 )}/>
+                 )}/>*/}
 
-          <Route path="/login" 
+          <Route path="/loginLocal" 
+                 component={LocalLogin} />
+
+          {/*<Route path="/login" 
                  render={() => (
                    this.state.loggedIn ? (
                      <Redirect to={"/" + this.state.loggedIn} />
                    ) : (
                      <Login/>
                    )
-                 )}/>
+                 )}/>*/}
+
+          <Route path="/login" 
+                 component={Login} />
 
           <Route path="/signup" 
                  component={Signup} />
