@@ -29,7 +29,8 @@ class App extends React.Component {
     this.state = {
       currentPodcastView: 'Top 10 Podcasts!',
       podcasts: [],
-      categories: ['arts', 
+      categories: ['podcasts',
+                   'arts', 
                    'comedy',  
                    'education',  
                    'kidsFamily', 
@@ -228,7 +229,7 @@ class App extends React.Component {
       $.post('/newsPolitics', { genreID: 1311 })
         .done((results) => {
           this.setState({
-            comedy: results
+            newsPolitics: results
           });
     
           this.updateRatings();
