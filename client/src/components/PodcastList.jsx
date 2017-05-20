@@ -19,7 +19,7 @@ class PodcastList extends React.Component {
     this.onClickPodcast = this.onClickPodcast.bind(this);
 
     this.onFavorite = this.onFavorite.bind(this);
-    console.log("LIST PROPS", this.props)
+    // console.log("LIST PROPS", this.props)
 
   }
 
@@ -199,7 +199,7 @@ PodcastList.propTypes = {
   podcasts: PropTypes.array.isRequired,
   onClickPodcast: PropTypes.func.isRequired,
   getFavPodcasts: PropTypes.func,
-  loggedIn: PropTypes.bool
+  loggedIn: PropTypes.string
 };
 
 PodcastList.contextTypes = {

@@ -59,7 +59,7 @@ FavoritePodcasts.propTypes = {
   favPodcasts: PropTypes.array,
   getFavPodcasts: PropTypes.func.isRequired,
   onClickPodcast: PropTypes.func.isRequired,
-  loggedIn: PropTypes.bool.isRequired
+  loggedIn: PropTypes.string.isRequired
 };
 
 export default FavoritePodcasts;

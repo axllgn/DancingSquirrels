@@ -10,7 +10,7 @@ import Signup from './components/Signup.jsx';
 import ReactRouter from 'react-router';
 import LocalLogin from './components/LocalLogin.jsx';
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 /* astros */
 // import { AppBar } from 'react-toolbox/lib/app_bar';
@@ -308,10 +308,9 @@ class App extends React.Component {
   logoutUser() {
     $.get('/logout', () => {
       this.setState({ 
-        loggedIn: false,
+        loggedIn: '',
       });
     });
-    ReactRouter.browserHistory.push('/');
   }
 
   currentPodcastView(newPage) {
@@ -358,8 +357,26 @@ class App extends React.Component {
                                       currentPodcastView={this.state.currentPodcastView}
                                       onMenuClick={this.onMenuClick}
                                       loggedIn={this.state.loggedIn} />)} />
+          {/*<Route path="/loginLocal" 
+                 render={() => (
+                   this.state.loggedIn ? (
+                     <Redirect to={"/" + this.state.loggedIn} />
+                   ) : (
+                     <LocalLogin/>
+                   )
+                 )}/>*/}
+
           <Route path="/loginLocal" 
                  component={LocalLogin} />
+
+          {/*<Route path="/login" 
+                 render={() => (
+                   this.state.loggedIn ? (
+                     <Redirect to={"/" + this.state.loggedIn} />
+                   ) : (
+                     <Login/>
+                   )
+                 )}/>*/}
 
           <Route path="/login" 
                  component={Login} />

@@ -11,6 +11,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import FlatButton from 'material-ui/FlatButton';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
+import AccountBox from 'material-ui/svg-icons/action/account-box';
 // import FontIcon from 'material-ui/FontIcon';
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
@@ -34,7 +35,7 @@ class Search extends React.Component {
     
     this.handleToggle = this.handleToggle.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    
+
     this.onMenuClick = this.onMenuClick.bind(this);
     this.arts = this.arts.bind(this) 
     this.comedy = this.comedy.bind(this) 
@@ -147,7 +148,9 @@ class Search extends React.Component {
           >
             { this.props.loggedIn ?  
              ( <div>
-             <MenuItem onTouchTap={this.handleClose}>Logout</MenuItem>
+                <Link to='/logout' >
+                  <MenuItem onTouchTap={ () => {this.props.logoutUser(); this.handleClose()} }>Logout</MenuItem>
+                </Link>) }            
               <MenuItem onTouchTap={this.handleClose}>Favorites</MenuItem>
               <MenuItem onTouchTap={this.handleClose}>Unfinished</MenuItem>
               <MenuItem onTouchTap={this.handleClose}>History</MenuItem>
@@ -205,10 +208,10 @@ class Search extends React.Component {
               <FlatButton label="Login" style={{ color: 'white' }}/>
             </Link>) 
             :
-            (<Link to='/logout' onClick={ () => this.props.logoutUser() }>
-                <FlatButton label="Logout" style={{ color: 'white' }}/>
-              </Link>) }            
-
+            (<Link to={'/' + this.props.loggedIn}>
+              <AccountBox color="white"/>
+              Hi! {this.props.loggedIn}
+            </Link>)}
           </ToolbarGroup>
         </Toolbar>
 

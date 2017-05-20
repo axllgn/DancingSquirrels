@@ -6,7 +6,7 @@ class WriteReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: null
+      loggedIn: ''
     };
   }
 

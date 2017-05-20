@@ -19,7 +19,7 @@ class UserHomePage extends React.Component {
     this.getFavorites = this.getFavorites.bind(this);
     this.updateLoggedIn = this.updateLoggedIn.bind(this);
 
-    console.log("USER HOMEPAGE P",this.props);
+    // console.log("USER HOMEPAGE P",this.props);
   }
 
   componentDidMount(){
@@ -29,10 +29,10 @@ class UserHomePage extends React.Component {
       if ( !context.props.loggedIn ){
         console.log("will update login");
         context.updateLoggedIn();
+        context.getFavorites();
       }
     },100)
       
-    context.getFavorites();
   }
 
   updateLoggedIn(){
@@ -58,12 +58,15 @@ class UserHomePage extends React.Component {
       <div className='main-container'>
         <h2 className='podcast-results'>{this.username}'s Favorites</h2>
         
-        { console.log("this.state.favoritePodcasts") }
+        {this.props.categories.map((category) => 
+          <PodcastList
+            podcasts={ this.props[category] }
+            category = {category}
+            onClickPodcast={this.props.onClickPodcast } 
+            currentPodcastView={this.props.currentPodcastView}
+            loggedIn={ this.props.loggedIn } />              
+        )}
 
-        <PodcastList
-          podcasts={this.state.favoritePodcasts}
-          onClickPodcast={ this.props.onClickPodcast }
-          loggedIn={this.props.loggedIn} />
 
          <FavoritePodcasts
           favPodcasts={this.state.favoritePodcasts}

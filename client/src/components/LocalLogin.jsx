@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-
+import PropTypes from 'prop-types';
 
 class LocalLogin extends React.Component {
   constructor(props) {
@@ -61,6 +61,5 @@ class LocalLogin extends React.Component {
     )
   }
 }
-
 
 export default LocalLogin;
