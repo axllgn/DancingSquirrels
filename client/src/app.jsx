@@ -75,9 +75,8 @@ class App extends React.Component {
     this.updateLoggedIn = this.updateLoggedIn.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.updateLoggedIn();
-    this.getHomePage();
   }
 
   updateLoggedIn(){
@@ -85,6 +84,10 @@ class App extends React.Component {
       .done((results) => {
         this.setState({ loggedIn: results.user });
         console.log('----> UPDATE USER NAME:', results.user);
+        console.log('current url: ', window.location.pathname, this.state.loggedIn);
+        if (window.location.pathname === '/' || window.location.pathname === '/' + this.state.loggedIn) {
+          this.getHomePage();
+        }
       })    
   }
 
@@ -413,12 +416,12 @@ class App extends React.Component {
                                       onClickPodcast={this.onClickPodcast}
                                       currentPodcastView={this.state.currentPodcastView}
                                       onMenuClick={this.onMenuClick} 
-                                      loggedIn={!!this.state.loggedIn} /> )} />
+                                      loggedIn={this.state.loggedIn} /> )} />
           <Route
             path="/:username"
             component={() => (<UserHomePage
                                 updateLoggedIn={ this.updateLoggedIn }
-                                loggedIn={ !!this.state.loggedIn }
+                                loggedIn={this.state.loggedIn }
                                 onSearch={this.onSearch}
                                 podcasts={this.state.podcasts}
                                 categories={this.state.categories}
